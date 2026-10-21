@@ -1,0 +1,31 @@
+/* LOGIN MAHASISWA — login/mahasiswa.html (mobile + desktop). */
+body.login { background: #fff; }
+.login-wrap { display: flex; flex-direction: column; min-height: 100vh; }
+.login-brand { display: none; }
+.login-brand-m { padding: 80px 24px 0; text-align: center; }
+.login-brand-m img { height: 48px; width: auto; margin: 0 auto; }
+.login-form { padding: 14px 24px 40px; max-width: 460px; width: 100%; margin: 0 auto; }
+.login-form h1 { display: none; }
+.login-form .sub { text-align: center; font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+.login-form form { display: flex; flex-direction: column; gap: 14px; }
+.login-form .btn { margin-top: 0; }
+
+@media (min-width: 768px) {
+  /* login desktop */
+  .login-wrap { flex-direction: row; min-height: 100vh; }
+  .login-brand-m { display: none; }
+  .login-brand { display: flex; flex-direction: column; justify-content: space-between; width: 50%; background: var(--primary); color: #fff; padding: 70px 66px 28px 60px; }
+  .login-brand img { width: 315px; height: auto; }
+  .login-brand .tag { font-size: 18px; font-weight: 600; margin: 8px 0 0; }
+  .login-brand .about { font-size: 14px; line-height: 24px; text-align: center; color: #d6d4f5; padding-left: 6px; }
+  .login-form { width: 50%; max-width: none; margin: 0; background: var(--page); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 40px 104px; }
+  .login-form-in { width: 400px; max-width: 100%; }
+  .login-form h1 { display: block; text-align: center; font-size: 32px; font-weight: 700; letter-spacing: .01em; margin-bottom: 14px; line-height: 48px; }
+  .login-form .sub { text-align: left; font-size: 13px; margin-bottom: 33px; }
+  .login-form form { gap: 20px; }
+  .login-form .btn { margin-top: 37px; }
+}
+
+/* tautan ke login staff */
+.login-form .staff-link { text-align: center; margin-top: 18px; font-size: 13px; }
+.staff-link a { color: var(--primary); font-weight: 600; }

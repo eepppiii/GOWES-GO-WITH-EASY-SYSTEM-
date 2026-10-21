@@ -1,0 +1,58 @@
+/* PANEL STAFF — dipakai petugas/, admin/, superadmin/ (sidebar, statistik, tabel, tombol kecil). */
+body.admin { background: var(--page); }
+.admin-shell { display: flex; min-height: 100vh; }
+.sidebar { width: 240px; flex: none; background: var(--primary-dark); color: #fff; padding: 32px 24px 28px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+.sidebar .logo img { width: 77px; height: auto; }
+.sidebar .role { font-size: 11px; color: var(--side-label); margin-top: 10px; }
+.menu { margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.menu a { display: block; padding: 12px 14px; border-radius: 10px; font-size: 14px; color: var(--side-muted); transition: background .15s; }
+.menu a.on { background: var(--primary); color: #fff; font-weight: 600; }
+.menu a:hover:not(.on) { background: rgba(255,255,255,.07); }
+.menu-logout { display: block; padding: 12px 14px; border-radius: 10px; font-size: 14px; color: var(--side-muted); }
+.menu-logout:hover { background: rgba(255,255,255,.07); }
+.main { flex: 1; padding: 32px 36px 48px; min-width: 0; }
+.topbar-a { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.topbar-a h1 { font-size: 26px; font-weight: 700; line-height: 31px; }
+.topbar-a p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.pill { background: #fff; color: var(--primary); font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 99px; white-space: nowrap; }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+.stat { background: #fff; border-radius: 16px; padding: 18px 20px; }
+.stat .k { font-size: 13px; color: var(--muted); }
+.stat .v { font-size: 36px; font-weight: 700; margin-top: 4px; line-height: 1.2; }
+
+.panel { background: #fff; border-radius: 16px; padding: 20px 24px; margin-top: 22px; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 28px; }
+.panel-head h2 { font-size: 17px; font-weight: 700; }
+.link { font-size: 13px; font-weight: 600; color: var(--primary); }
+.table-wrap { overflow-x: auto; }
+table.tbl { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.tbl th { text-align: left; font-size: 13px; font-weight: 600; color: var(--muted); padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl td { font-size: 13px; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); height: 46px; white-space: nowrap; }
+.tbl tr:last-child td { border-bottom: 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+.shelter-card { background: #fff; border-radius: 16px; padding: 18px 20px; }
+.shelter-card h3 { font-size: 15px; font-weight: 700; }
+.shelter-card p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.shelter-card b { display: block; font-size: 13px; font-weight: 600; color: var(--primary); margin-top: 4px; }
+
+.btn-sm { display: inline-block; height: 28px; line-height: 28px; padding: 0 12px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--tint); color: var(--primary); transition: filter .15s; }
+.btn-sm:hover { filter: brightness(.96); }
+.btn-sm.solid { background: var(--primary); color: #fff; }
+.btn-sm.solid:hover { filter: brightness(1.1); }
+
+.search-row { display: flex; align-items: center; gap: 12px; }
+.search-row h2 { font-size: 15px; font-weight: 700; white-space: nowrap; }
+.search-row .inp { flex: 1; height: 38px; border: 0; border-radius: 10px; background: var(--surface); padding: 0 16px; font: 400 13px 'Albert Sans', sans-serif; outline: none; }
+.search-row .inp:focus { box-shadow: 0 0 0 2px var(--primary); }
+
+
+@media (max-width: 1100px) {
+  .admin-shell { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 16px 20px; }
+  .sidebar .role { display: none; }
+  .menu { flex-direction: row; margin-top: 0; flex-wrap: wrap; flex: 1; }
+  .main { padding: 24px 20px 40px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}

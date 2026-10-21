@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/login-mahasiswa.css">
+</head>
+
+<body class="login">
+  <div class="login-wrap">
+
+    <div class="login-brand-m">
+      <img src="../img/logo.png" alt="GOWES">
+    </div>
+
+    <aside class="login-brand">
+      <div>
+        <img src="../img/logo-white.png" alt="GOWES">
+        <p class="tag">Pinjam E-Bike, Jelajahi Kampus!</p>
+      </div>
+      <p class="about">
+        Nikmati perjalanan di kampus yang lebih praktis dan ramah lingkungan bersama GOWES.
+        Pinjam Sepeda dengan mudah tanpa perlu kartu identitas fisik.
+        Cukup scan QR Code, pilih durasi peminjaman, dan siap berkeliling kampus.
+      </p>
+    </aside>
+
+    <section class="login-form">
+      <div class="login-form-in">
+        <h1>LOGIN</h1>
+        <p class="sub">Masuk untuk meminjam Sepeda POLINEMA.</p>
+        <form data-go="../mahasiswa/dashboard.html" data-save="user">
+          <input class="input" type="text" name="nim" placeholder="Nomor Identitas" inputmode="numeric" autocomplete="username">
+          <input class="input" type="text" name="nama" placeholder="Nama" autocomplete="name">
+          <input class="input" type="password" name="password" placeholder="Password" autocomplete="current-password">
+          <button class="btn btn-primary" type="submit">Masuk</button>
+        </form>
+        <p class="staff-link"><a href="staff.html">Masuk sebagai petugas / admin</a></p>
+      </div>
+    </section>
+
+  </div>
+  <script src="../js/common.js"></script>
+</body>
+
+</html>

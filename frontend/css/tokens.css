@@ -1,0 +1,40 @@
+/* TOKEN — warna, ukuran, variabel desain. Ubah warna/ukuran global DI SINI. */
+:root {
+  --primary: #3a32a5;
+  --primary-dark: #241f78;
+  --ink: #1a1a2e;
+  --muted: #7a7a90;
+  --surface: #f2f2f8;
+  --tint: #e9e8fa;
+  --page: #f7f7fb;
+  --line: #ededf5;
+  --on-primary-soft: #c9c7f2;
+  --side-muted: #b9b6ea;
+  --side-label: #9c99d6;
+  --white: #fff;
+
+  --ok-bg: #e3f6ea;   --ok-fg: #1e8a4c;
+  --warn-bg: #fff4cc; --warn-fg: #8a6a00;
+  --bad-bg: #fde4e4;  --bad-fg: #c23030;
+  --info-bg: #e9e8fa; --info-fg: #3a32a5;
+  --orange: #f5921e;  --red: #d64545;  --danger: #ff3b3b;
+
+  /* nilai yang berubah antara mobile dan desktop */
+  --card-bg: var(--surface);
+  --card-pad: 18px;
+  --card-radius: 18px;
+  --row-gap: 10px;
+  --row-fs: 13px;
+  --btn-h: 50px;
+  --btn-fs: 15px;
+  --title-fs: 24px;
+}
+
+/* ukuran untuk layar desktop (>= 768px) */
+@media (min-width: 768px) {
+  :root {
+    --card-bg: #fff; --card-pad: 22px; --card-radius: 20px;
+    --row-gap: 12px; --row-fs: 14px;
+    --btn-h: 48px; --btn-fs: 18px; --title-fs: 28px;
+  }
+}

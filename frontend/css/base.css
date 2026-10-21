@@ -1,0 +1,19 @@
+/* DASAR — reset, font body, kelas .m/.d (teks beda mobile vs desktop). */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Albert Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: #fff;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: 0; cursor: pointer; color: inherit; background: none; }
+img { display: block; max-width: 100%; }
+svg { display: block; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* teks yang berbeda antara mobile dan desktop */
+.d { display: none; }
+@media (min-width: 768px) { .m { display: none; } .d { display: inline; } }

@@ -1,0 +1,36 @@
+/* KOMPONEN UMUM — chip status, tombol, kartu, baris data. Dipakai semua peran. */
+.chip {
+  display: inline-block; height: 21px; padding: 0 10px; border-radius: 99px;
+  font-size: 11px; font-weight: 600; line-height: 21px; white-space: nowrap;
+}
+.chip-ok   { background: var(--ok-bg);   color: var(--ok-fg); }
+.chip-warn { background: var(--warn-bg); color: var(--warn-fg); }
+.chip-bad  { background: var(--bad-bg);  color: var(--bad-fg); }
+.chip-info { background: var(--info-bg); color: var(--info-fg); }
+
+.btn {
+  display: block; width: 100%; height: var(--btn-h); line-height: var(--btn-h);
+  text-align: center; border-radius: 14px; font-size: var(--btn-fs); font-weight: 600;
+  transition: filter .15s, transform .05s;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-white   { background: #fff; color: var(--primary); }
+.btn-soft    { background: var(--surface); color: var(--primary); }
+.btn-danger  { background: var(--surface); color: var(--danger); }
+
+.input {
+  display: block; width: 100%; height: 47px; padding: 0 16px; border: 0; border-radius: 12px;
+  background: var(--surface); color: var(--ink); font: 400 14px 'Albert Sans', sans-serif; outline: none;
+}
+.input::placeholder { color: var(--muted); }
+.input:focus { box-shadow: 0 0 0 2px var(--primary); }
+
+.rows { display: flex; flex-direction: column; gap: var(--row-gap); font-size: var(--row-fs); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 17px; }
+.row .k { color: var(--muted); }
+.row .v { font-weight: 600; text-align: right; }
+
+.card { background: var(--card-bg); border-radius: var(--card-radius); padding: var(--card-pad); }
+.card-in { background: var(--surface); border-radius: 18px; padding: 16px; }
