@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laporan kondisi · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/mahasiswa.css">
+</head>
+
+<body class="user ">
+
+  <header class="topbar">
+    <a class="brand" href="dashboard.html"><img src="../img/logo.png" alt="GOWES"></a>
+    <nav class="topnav" aria-label="Menu utama">
+      <a class="navitem" href="dashboard.html">
+        <span class="ico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9.6 10 3.5l7 6.1V16a1 1 0 0 1-1 1h-3.4v-4.6H7.4V17H4a1 1 0 0 1-1-1z" />
+          </svg>
+        </span>Dashboard</a>
+      <a class="navitem on" href="peminjaman.html">
+        <span class="ico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="4.8" cy="13" r="3" />
+            <circle cx="15.2" cy="13" r="3" />
+            <path d="M4.8 13 8 7.2h4.2l3 5.8M8 7.2 7 5H5M12.2 7.2 10.6 13" />
+          </svg>
+        </span>Peminjaman</a>
+      <a class="navitem" href="scan.html">
+        <span class="ico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 7V4.5A1.5 1.5 0 0 1 4.5 3H7M13 3h2.5A1.5 1.5 0 0 1 17 4.5V7M17 13v2.5a1.5 1.5 0 0 1-1.5 1.5H13M7 17H4.5A1.5 1.5 0 0 1 3 15.5V13M6.5 10h7" />
+          </svg>
+        </span>Scan QR</a>
+      <a class="navitem" href="profil.html">
+        <span class="ico">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="10" cy="6.6" r="3.2" />
+            <path d="M3.8 17c.9-3.1 3.2-4.6 6.2-4.6s5.3 1.5 6.2 4.6" />
+          </svg>
+        </span>Profil</a>
+    </nav>
+    <div class="who">
+      <span data-fill="nama">Mahasiswa Dummy</span>
+      <span class="avatar-sm" data-fill="inisial">M</span>
+    </div>
+  </header>
+
+  <main class="page no-tab ">
+    <div class="col ">
+
+      <h1 class="title">
+        <span class="m">Laporan kondisi Go-bike</span>
+        <span class="d">Laporan Kondisi Go-bike</span>
+      </h1>
+      <p class="lead">Beri nilai tiap bagian: 1 = sangat rusak, 5 = sangat baik.</p>
+
+      <form data-go="riwayat.html" style="display:flex;flex-direction:column;gap:10px;">
+
+        <section class="rate" data-rating>
+          <div class="rate-title">Ban</div>
+          <div class="scale">
+            <button type="button" data-nilai="1" class="" aria-label="Ban: nilai 1">1</button>
+            <button type="button" data-nilai="2" class="" aria-label="Ban: nilai 2">2</button>
+            <button type="button" data-nilai="3" class="" aria-label="Ban: nilai 3">3</button>
+            <button type="button" data-nilai="4" class="" aria-label="Ban: nilai 4">4</button>
+            <button type="button" data-nilai="5" class="on" aria-label="Ban: nilai 5">5</button>
+          </div>
+          <span class="cap l">Sangat rusak</span>
+          <span class="cap r">Sangat baik</span>
+        </section>
+
+        <section class="rate" data-rating>
+          <div class="rate-title">Rem</div>
+          <div class="scale">
+            <button type="button" data-nilai="1" class="" aria-label="Rem: nilai 1">1</button>
+            <button type="button" data-nilai="2" class="" aria-label="Rem: nilai 2">2</button>
+            <button type="button" data-nilai="3" class="" aria-label="Rem: nilai 3">3</button>
+            <button type="button" data-nilai="4" class="" aria-label="Rem: nilai 4">4</button>
+            <button type="button" data-nilai="5" class="on" aria-label="Rem: nilai 5">5</button>
+          </div>
+          <span class="cap l">Sangat rusak</span>
+          <span class="cap r">Sangat baik</span>
+        </section>
+
+        <section class="rate" data-rating>
+          <div class="rate-title">Rantai</div>
+          <div class="scale">
+            <button type="button" data-nilai="1" class="" aria-label="Rantai: nilai 1">1</button>
+            <button type="button" data-nilai="2" class="" aria-label="Rantai: nilai 2">2</button>
+            <button type="button" data-nilai="3" class="" aria-label="Rantai: nilai 3">3</button>
+            <button type="button" data-nilai="4" class="" aria-label="Rantai: nilai 4">4</button>
+            <button type="button" data-nilai="5" class="on" aria-label="Rantai: nilai 5">5</button>
+          </div>
+          <span class="cap l">Sangat rusak</span>
+          <span class="cap r">Sangat baik</span>
+        </section>
+
+        <section class="rate" data-rating>
+          <div class="rate-title">Lampu dan baterai</div>
+          <div class="scale">
+            <button type="button" data-nilai="1" class="" aria-label="Lampu dan baterai: nilai 1">1</button>
+            <button type="button" data-nilai="2" class="" aria-label="Lampu dan baterai: nilai 2">2</button>
+            <button type="button" data-nilai="3" class="" aria-label="Lampu dan baterai: nilai 3">3</button>
+            <button type="button" data-nilai="4" class="" aria-label="Lampu dan baterai: nilai 4">4</button>
+            <button type="button" data-nilai="5" class="on" aria-label="Lampu dan baterai: nilai 5">5</button>
+          </div>
+          <span class="cap l">Sangat rusak</span>
+          <span class="cap r">Sangat baik</span>
+        </section>
+
+        <section class="rate" data-rating>
+          <div class="rate-title">Rangka dan bodi</div>
+          <div class="scale">
+            <button type="button" data-nilai="1" class="" aria-label="Rangka dan bodi: nilai 1">1</button>
+            <button type="button" data-nilai="2" class="" aria-label="Rangka dan bodi: nilai 2">2</button>
+            <button type="button" data-nilai="3" class="" aria-label="Rangka dan bodi: nilai 3">3</button>
+            <button type="button" data-nilai="4" class="" aria-label="Rangka dan bodi: nilai 4">4</button>
+            <button type="button" data-nilai="5" class="on" aria-label="Rangka dan bodi: nilai 5">5</button>
+          </div>
+          <span class="cap l">Sangat rusak</span>
+          <span class="cap r">Sangat baik</span>
+        </section>
+
+        <textarea class="textarea" name="keterangan" placeholder="Keterangan kondisi atau kerusakan"></textarea>
+        <button class="btn btn-primary" type="submit" style="margin-top:6px">Kirim laporan</button>
+      </form>
+
+    </div>
+  </main>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/rating.js"></script>
+</body>
+
+</html>
