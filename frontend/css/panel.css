@@ -69,3 +69,162 @@ table.tbl { width: 100%; border-collapse: collapse; margin-top: 6px; }
 /* ---------- tombol aksi ganda di tabel (Konfirmasi Pinjam / Kembali) & hitungan sanksi ---------- */
 .actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .cnt { display: inline-block; min-width: 38px; margin-right: 6px; }
+
+/* ---------- TABEL RESPONSIVE (HP) ----------
+   Di layar <= 640px, setiap baris tabel jadi satu kartu; nama kolom diambil dari
+   atribut data-label di tiap <td> (diisi otomatis oleh js/tabel.js). */
+@media (max-width: 640px) {
+  .main { padding: 20px 16px 32px; }
+  .topbar-a { flex-wrap: wrap; }
+  .topbar-a h1 { font-size: 22px; line-height: 27px; }
+  .panel { padding: 16px; }
+  .panel-head { flex-wrap: wrap; }
+  .tools { flex: 1 1 100%; }
+  .tool-search { flex: 1; }
+  .tool-search input { width: 100%; min-width: 0; }
+  .search-row { flex-wrap: wrap; }
+  .search-row .inp { flex: 1 1 100%; order: 2; }
+  .stat .v { font-size: 30px; }
+  .menu a, .menu-logout { padding: 9px 12px; font-size: 13px; }
+
+  .table-wrap { overflow-x: visible; }
+  table.tbl, .tbl tbody, .tbl tr, .tbl td { display: block; width: 100%; }
+  .tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tbl tbody tr { background: var(--surface); border-radius: 14px; padding: 6px 14px; margin-top: 10px; }
+  .tbl td { height: auto; min-height: 36px; padding: 8px 0; white-space: normal; line-height: 1.5; }
+  .tbl tbody tr td:not(:last-child) { border-bottom: 1px solid var(--line); }
+  .tbl tbody tr td:last-child { border-bottom: 0; }
+  .tbl td::before { content: attr(data-label); display: inline-block; width: 42%; padding-right: 10px; vertical-align: top; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .tbl td[data-label=""]::before { display: none; }
+}
+
+/* ===== Hamburger menu (admin & petugas) ===== */
+
+/* Desktop: checkbox & hamburger tidak ditampilkan */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .admin-shell {
+    flex-direction: column;
+  }
+
+  .admin-shell .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand  burger"
+      "menu   menu"
+      "logout logout";
+    align-items: center;
+    gap: 0 16px;
+    padding: 12px 16px;
+  }
+
+  /* Logo */
+  .admin-shell .sidebar > div:first-of-type {
+    grid-area: brand;
+    display: flex;
+    align-items: center;
+  }
+  .admin-shell .sidebar .logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+  .admin-shell .sidebar .role {
+    display: none; /* sudah ada pill di header halaman */
+  }
+
+  /* Tombol hamburger */
+  .admin-shell .hamburger {
+    grid-area: burger;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 11px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .12);
+    cursor: pointer;
+  }
+  .admin-shell .hamburger span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: #fff;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle:focus-visible ~ .hamburger {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  /* Hamburger berubah jadi X saat terbuka */
+  .nav-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Menu & Keluar: tersembunyi dulu */
+  .admin-shell .sidebar .menu,
+  .admin-shell .sidebar .menu-logout {
+    display: none;
+  }
+
+  /* Terbuka saat checkbox tercentang */
+  .nav-toggle:checked ~ .menu {
+    grid-area: menu;
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    gap: 4px;
+    margin: 14px 0 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .nav-toggle:checked ~ .menu a {
+    display: block;
+    white-space: normal;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .nav-toggle:checked ~ .menu-logout {
+    grid-area: logout;
+    display: block;
+    margin: 10px 0 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    background: rgba(255, 255, 255, .12);
+    text-decoration: none;
+  }
+
+  .admin-shell .main {
+    width: 100%;
+    min-width: 0;
+  }
+}

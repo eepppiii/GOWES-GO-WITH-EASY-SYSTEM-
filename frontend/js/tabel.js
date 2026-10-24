@@ -21,3 +21,18 @@ document.addEventListener('DOMContentLoaded', function () {
   if (cari) cari.addEventListener('input', saring);
   if (tgl) tgl.addEventListener('change', saring);
 });
+
+/* TABEL RESPONSIVE (HP) — salin teks <th> ke atribut data-label tiap <td>,
+   dipakai css/panel.css untuk menampilkan nama kolom saat tabel jadi kartu. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('table.tbl').forEach(function (tabel) {
+    var judul = Array.prototype.map.call(tabel.querySelectorAll('thead th'), function (th) {
+      return th.textContent.trim();
+    });
+    tabel.querySelectorAll('tbody tr').forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (td, i) {
+        if (!td.hasAttribute('data-label')) td.setAttribute('data-label', judul[i] || '');
+      });
+    });
+  });
+});
