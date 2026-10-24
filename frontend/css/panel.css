@@ -56,3 +56,16 @@ table.tbl { width: 100%; border-collapse: collapse; margin-top: 6px; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .grid-2 { grid-template-columns: 1fr; }
 }
+
+/* ---------- ikon Tanggal + Cari di kanan judul tabel ---------- */
+.tools { display: flex; align-items: center; gap: 10px; }
+.icon-btn { position: relative; width: 36px; height: 36px; border-radius: 10px; background: var(--surface); color: var(--primary); display: grid; place-items: center; cursor: pointer; }
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn input[type=date] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
+.tool-search { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: 10px; background: var(--surface); color: var(--muted); }
+.tool-search svg { width: 16px; height: 16px; flex: none; }
+.tool-search input { border: 0; outline: 0; background: none; font: 400 13px 'Albert Sans', sans-serif; color: var(--ink); width: 130px; }
+
+/* ---------- tombol aksi ganda di tabel (Konfirmasi Pinjam / Kembali) & hitungan sanksi ---------- */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.cnt { display: inline-block; min-width: 38px; margin-right: 6px; }
