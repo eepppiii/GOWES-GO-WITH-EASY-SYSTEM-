@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit Go-bike · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body class="admin" data-peran="petugas">
+
+  <div class="admin-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div>
+        <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
+        <div class="role">Petugas / Satpam</div>
+      </div>
+
+      <nav class="menu" aria-label="Menu Petugas / Satpam">
+        <a href="dashboard.html" class="">Dashboard</a>
+        <a href="unit.html" class="on">Unit Go-bike</a>
+        <a href="peminjaman.html" class="">Peminjaman</a>
+        <a href="laporan.html" class="">Laporan Kondisi</a>
+        <a href="riwayat.html" class="">Riwayat Peminjaman</a>
+      </nav>
+
+      <a class="menu-logout" href="../login/staff.html">Keluar</a>
+    </aside>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <main class="main">
+      <header class="topbar-a">
+        <div>
+          <h1>Unit Go-bike</h1>
+          <p>Kelola data unit dan status ketersediaan</p>
+        </div>
+        <span class="pill">Petugas - Satpam</span>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Daftar Unit</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>ID Go-bike</th>
+                <th>Shelter</th>
+                <th>Status</th>
+                <th>Kondisi terakhir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GB-01</td>
+                <td>Shelter 1</td>
+                <td><span class="chip chip-ok">Tersedia</span></td>
+                <td>Baik</td>
+              </tr>
+              <tr>
+                <td>GB-02</td>
+                <td>Shelter 1</td>
+                <td><span class="chip chip-info">Dipinjam</span></td>
+                <td>Baik</td>
+              </tr>
+              <tr>
+                <td>GB-03</td>
+                <td>Shelter 1</td>
+                <td><span class="chip chip-info">Dipinjam</span></td>
+                <td>Baik</td>
+              </tr>
+              <tr>
+                <td>GB-04</td>
+                <td>Shelter 1</td>
+                <td><span class="chip chip-warn">Perawatan</span></td>
+                <td>Rem perlu dicek</td>
+              </tr>
+              <tr>
+                <td>GB-05</td>
+                <td>Shelter 2</td>
+                <td><span class="chip chip-ok">Tersedia</span></td>
+                <td>Baik</td>
+              </tr>
+              <tr>
+                <td>GB-06</td>
+                <td>Shelter 2</td>
+                <td><span class="chip chip-ok">Tersedia</span></td>
+                <td>Baik</td>
+              </tr>
+              <tr>
+                <td>GB-07</td>
+                <td>Shelter 2</td>
+                <td><span class="chip chip-info">Dipinjam</span></td>
+                <td>Baik</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/tabel.js"></script>
+</body>
+
+</html>
