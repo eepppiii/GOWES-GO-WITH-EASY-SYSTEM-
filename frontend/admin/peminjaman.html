@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peminjaman · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body class="admin" data-peran="admin">
+
+  <div class="admin-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div>
+        <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
+        <div class="role">Admin / RT POLINEMA</div>
+      </div>
+
+      <nav class="menu" aria-label="Menu Admin / RT POLINEMA">
+        <a href="dashboard.html" class="">Dashboard</a>
+        <a href="unit.html" class="">Unit Go-bike</a>
+        <a href="peminjaman.html" class="on">Peminjaman</a>
+        <a href="sanksi.html" class="">Sanksi</a>
+        <a href="laporan.html" class="">Laporan Kondisi</a>
+        <a href="riwayat.html" class="">Riwayat Peminjaman</a>
+      </nav>
+
+      <a class="menu-logout" href="../login/staff.html">Keluar</a>
+    </aside>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <main class="main">
+      <header class="topbar-a">
+        <div>
+          <h1>Peminjaman</h1>
+          <p>Verifikasi bukti digital dan konfirmasi pengembalian</p>
+        </div>
+        <span class="pill">Admin - RT POLINEMA</span>
+      </header>
+
+      <section class="panel">
+        <div class="search-row">
+          <h2>Verifikasi Bukti</h2>
+          <input class="inp" id="cari" type="search" placeholder="Cari Nomor Identitas atau ID Go-bike" aria-label="Cari Nomor Identitas atau ID Go-bike">
+          <a class="btn-sm solid" href="#">Cari</a>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Peminjaman Aktif</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Nomor Identitas</th>
+                <th>Unit</th>
+                <th>Mulai</th>
+                <th>Batas</th>
+                <th>Sisa waktu</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>244107060001</td>
+                <td>GB-03</td>
+                <td>13.00</td>
+                <td>15.00</td>
+                <td>01:42:18</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+                <td><a class="btn-sm" href="#">Konfirmasi kembali</a></td>
+              </tr>
+              <tr>
+                <td>244107060014</td>
+                <td>GB-07</td>
+                <td>12.30</td>
+                <td>14.30</td>
+                <td>00:42:18</td>
+                <td><span class="chip chip-warn">Mendekati batas</span></td>
+                <td><a class="btn-sm" href="#">Konfirmasi kembali</a></td>
+              </tr>
+              <tr>
+                <td>244107060022</td>
+                <td>GB-02</td>
+                <td>10.30</td>
+                <td>13.30</td>
+                <td>Lewat 1:12:00</td>
+                <td><span class="chip chip-bad">Terlambat</span></td>
+                <td><a class="btn-sm" href="#">Konfirmasi kembali</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/tabel.js"></script>
+</body>
+
+</html>
