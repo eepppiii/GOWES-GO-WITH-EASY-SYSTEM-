@@ -18,13 +18,17 @@
   <div class="admin-shell">
 
     <!-- ===== SIDEBAR ===== -->
-    <aside class="sidebar"><input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
       <div>
         <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
         <div class="role">Admin / RT POLINEMA</div>
       </div>
 
-      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label><nav class="menu" aria-label="Menu Admin / RT POLINEMA">
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Admin / RT POLINEMA">
         <a href="dashboard.html" class="">Dashboard</a>
         <a href="unit.html" class="">Unit Go-bike</a>
         <a href="peminjaman.html" class="on">Peminjaman</a>
@@ -68,7 +72,6 @@
                 <th>Batas</th>
                 <th>Sisa waktu</th>
                 <th>Status</th>
-                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -79,7 +82,6 @@
                 <td>15.00</td>
                 <td>01:42:18</td>
                 <td><span class="chip chip-ok">Aktif</span></td>
-                <td><a class="btn-sm" href="#">Konfirmasi kembali</a></td>
               </tr>
               <tr>
                 <td>244107060014</td>
@@ -88,7 +90,6 @@
                 <td>14.30</td>
                 <td>00:42:18</td>
                 <td><span class="chip chip-warn">Mendekati batas</span></td>
-                <td><a class="btn-sm" href="#">Konfirmasi kembali</a></td>
               </tr>
               <tr>
                 <td>244107060022</td>
@@ -97,7 +98,6 @@
                 <td>13.30</td>
                 <td>Lewat 1:12:00</td>
                 <td><span class="chip chip-bad">Terlambat</span></td>
-                <td><a class="btn-sm" href="#">Konfirmasi kembali</a></td>
               </tr>
             </tbody>
           </table>
@@ -109,6 +109,7 @@
 
   <script src="../js/common.js"></script>
   <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
 </body>
 
 </html>
