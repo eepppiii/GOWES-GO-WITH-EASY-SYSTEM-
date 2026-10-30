@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body class="admin" data-peran="superadmin">
+
+  <div class="admin-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
+      <div>
+        <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
+        <div class="role">Super Admin</div>
+      </div>
+
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Super Admin">
+        <a href="dashboard.html" class="on">Dashboard</a>
+        <a href="unit.html" class="">Unit Go-bike</a>
+        <a href="peminjaman.html" class="">Peminjaman</a>
+        <a href="sanksi.html" class="">Sanksi</a>
+        <a href="laporan.html" class="">Laporan Kondisi</a>
+        <a href="riwayat.html" class="">Riwayat Peminjaman</a>
+        <a href="tambah-petugas-admin.html" class="">Tambah Petugas/Admin</a>
+      </nav>
+
+      <a class="menu-logout" href="../login/staff.html">Keluar</a>
+    </aside>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <main class="main">
+      <header class="topbar-a">
+        <div>
+          <h1>Dashboard Super Admin</h1>
+          <p>Senin–Jumat, 08.00–15.30 WIB</p>
+        </div>
+        <span class="pill">Super Admin</span>
+      </header>
+
+      <section class="stats">
+        <div class="stat">
+          <div class="k">Unit sepeda tersedia</div>
+          <div class="v" style="color:var(--primary)">9</div>
+        </div>
+        <div class="stat">
+          <div class="k">Unit sepeda tidak tersedia</div>
+          <div class="v" style="color:var(--ink)">3</div>
+        </div>
+        <div class="stat">
+          <div class="k">Pengembalian Terlambat</div>
+          <div class="v" style="color:var(--orange)">1</div>
+        </div>
+        <div class="stat">
+          <div class="k">User suspen aktif</div>
+          <div class="v" style="color:var(--red)">2</div>
+        </div>
+        <div class="stat">
+          <div class="k">Petugas Aktif</div>
+          <div class="v" style="color:var(--primary)">2</div>
+        </div>
+        <div class="stat">
+          <div class="k">Admin Aktif</div>
+          <div class="v" style="color:var(--primary)">1</div>
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <div class="shelter-card">
+          <h3>Shelter 1</h3>
+          <p>Pos Satpam Gedung Direktorat AA</p>
+          <b>5 dari 8 unit tersedia</b>
+        </div>
+        <div class="shelter-card">
+          <h3>Shelter 2</h3>
+          <p>Pos Satpam Gedung Teknik Sipil</p>
+          <b>4 dari 6 unit tersedia</b>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Peminjaman Aktif</h2>
+          <a class="link" href="peminjaman.html">Lihat semua</a>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Nomor Identitas</th>
+                <th>Unit</th>
+                <th>Shelter</th>
+                <th>Batas Kembali</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>244107060001</td>
+                <td>GB-03</td>
+                <td>Shelter 1</td>
+                <td>15.00 WIB</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+              </tr>
+              <tr>
+                <td>244107060014</td>
+                <td>GB-07</td>
+                <td>Shelter 2</td>
+                <td>14.30 WIB</td>
+                <td><span class="chip chip-warn">Mendekati batas</span></td>
+              </tr>
+              <tr>
+                <td>244107060022</td>
+                <td>GB-02</td>
+                <td>Shelter 1</td>
+                <td>13.30 WIB</td>
+                <td><span class="chip chip-bad">Terlambat</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
+</body>
+
+</html>

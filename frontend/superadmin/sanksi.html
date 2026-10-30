@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sanksi · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body class="admin" data-peran="superadmin">
+
+  <div class="admin-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
+      <div>
+        <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
+        <div class="role">Super Admin</div>
+      </div>
+
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Super Admin">
+        <a href="dashboard.html" class="">Dashboard</a>
+        <a href="unit.html" class="">Unit Go-bike</a>
+        <a href="peminjaman.html" class="">Peminjaman</a>
+        <a href="sanksi.html" class="on">Sanksi</a>
+        <a href="laporan.html" class="">Laporan Kondisi</a>
+        <a href="riwayat.html" class="">Riwayat Peminjaman</a>
+        <a href="tambah-petugas-admin.html" class="">Tambah Petugas/Admin</a>
+      </nav>
+
+      <a class="menu-logout" href="../login/staff.html">Keluar</a>
+    </aside>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <main class="main">
+      <header class="topbar-a">
+        <div>
+          <h1>Sanksi</h1>
+          <p>Teguran 1: suspen 3 hari · Teguran 2: 1 minggu · Teguran 3: permanen</p>
+        </div>
+        <span class="pill">Super Admin</span>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Rekap Sanksi</h2>
+          <div class="tools">
+            <label class="icon-btn date" title="Filter tanggal"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><rect x="3.2" y="4.4" width="13.6" height="12.4" rx="2"/><path d="M3.2 8.4h13.6M7 2.8v3M13 2.8v3"/></svg><input type="date" aria-label="Filter tanggal"></label>
+            <label class="tool-search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari"></label>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Nomor Identitas</th>
+                <th>Nama</th>
+                <th>Status Terlambat</th>
+                <th>Keterangan</th>
+                <th>Periode Suspen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>244107060022</td>
+                <td>Mahasiswa C</td>
+                <td>1 kali</td>
+                <td><span class="chip chip-bad">Suspen 3 hari</span></td>
+                <td>03–06 Okt 2026</td>
+              </tr>
+              <tr>
+                <td>244107060031</td>
+                <td>Mahasiswa D</td>
+                <td>2 kali</td>
+                <td><span class="chip chip-bad">Suspen 1 minggu</span></td>
+                <td>28 Sep–05 Okt 2026</td>
+              </tr>
+              <tr>
+                <td>244107060009</td>
+                <td>Mahasiswa E</td>
+                <td>1 kali</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+                <td>Selesai</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
+</body>
+
+</html>
