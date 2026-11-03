@@ -101,3 +101,5 @@ create table sanksi (
 	foreign key(id_peminjam) references peminjam(id_peminjam),
 	foreign key(id_admin) references admin(id_admin)
 );
+
+--trigger
