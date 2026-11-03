@@ -22,3 +22,15 @@ select
     (select COUNT(*) from sepeda where id_shelter = s.id_shelter) as total_unit,
     (select COUNT(*) from sepeda where id_shelter = s.id_shelter and status_ketersediaan = 'Tersedia') as unit_tersedia
 from shelter s;
+
+-- 4. hasil scan sepeda
+create view view_detail_sepeda as
+select 
+    sp.id_sepeda,
+    sp.kode_qr,
+    sp.status_ketersediaan,
+    s.id_shelter,
+    s.nama_shelter,
+    s.lokasi
+from sepeda sp
+join shelter s on sp.id_shelter = s.id_shelter;
