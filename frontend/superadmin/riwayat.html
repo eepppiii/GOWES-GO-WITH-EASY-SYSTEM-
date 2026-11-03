@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riwayat Peminjaman · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body class="admin" data-peran="superadmin">
+
+  <div class="admin-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
+      <div>
+        <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
+        <div class="role">Super Admin</div>
+      </div>
+
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Super Admin">
+        <a href="dashboard.html" class="">Dashboard</a>
+        <a href="unit.html" class="">Unit Go-bike</a>
+        <a href="peminjaman.html" class="">Peminjaman</a>
+        <a href="sanksi.html" class="">Sanksi</a>
+        <a href="laporan.html" class="">Laporan Kondisi</a>
+        <a href="riwayat.html" class="on">Riwayat Peminjaman</a>
+        <a href="tambah-petugas-admin.html" class="">Tambah Petugas/Admin</a>
+      </nav>
+
+      <a class="menu-logout" href="../login/staff.html">Keluar</a>
+    </aside>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <main class="main">
+      <header class="topbar-a">
+        <div>
+          <h1>Riwayat Peminjaman</h1>
+          <p>Rekap seluruh peminjaman Go-bike</p>
+        </div>
+        <span class="pill">Super Admin</span>
+      </header>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Semua Peminjaman</h2>
+          <div class="tools">
+            <label class="icon-btn date" title="Filter tanggal"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><rect x="3.2" y="4.4" width="13.6" height="12.4" rx="2"/><path d="M3.2 8.4h13.6M7 2.8v3M13 2.8v3"/></svg><input type="date" aria-label="Filter tanggal"></label>
+            <label class="tool-search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari"></label>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Jam</th>
+                <th>Nomor Identitas</th>
+                <th>Unit</th>
+                <th>Durasi</th>
+                <th>Kembali</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>02 Okt 2026</td>
+                <td>12.40</td>
+                <td>2441070891111</td>
+                <td>GB-03</td>
+                <td>2 jam</td>
+                <td>14.48 WIB</td>
+                <td><span class="chip chip-ok">Tepat waktu</span></td>
+              </tr>
+              <tr>
+                <td>02 Okt 2026</td>
+                <td>13.00</td>
+                <td>244107060014</td>
+                <td>GB-07</td>
+                <td>2 jam</td>
+                <td>Belum kembali</td>
+                <td><span class="chip chip-warn">Mendekati batas</span></td>
+              </tr>
+              <tr>
+                <td>28 Sep 2026</td>
+                <td>09.20</td>
+                <td>244107060001</td>
+                <td>GB-07</td>
+                <td>1 jam</td>
+                <td>10.20 WIB</td>
+                <td><span class="chip chip-ok">Tepat waktu</span></td>
+              </tr>
+              <tr>
+                <td>22 Sep 2026</td>
+                <td>11.00</td>
+                <td>244107060022</td>
+                <td>GB-02</td>
+                <td>3 jam</td>
+                <td>14.10 WIB</td>
+                <td><span class="chip chip-bad">Terlambat</span></td>
+              </tr>
+              <tr>
+                <td>21 Sep 2026</td>
+                <td>08.30</td>
+                <td>244107060031</td>
+                <td>GB-05</td>
+                <td>1 jam</td>
+                <td>09.40 WIB</td>
+                <td><span class="chip chip-ok">Tepat waktu</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
+</body>
+
+</html>

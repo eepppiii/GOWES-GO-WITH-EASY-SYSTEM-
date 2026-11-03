@@ -18,13 +18,17 @@
   <div class="admin-shell">
 
     <!-- ===== SIDEBAR ===== -->
-    <aside class="sidebar"><input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
       <div>
         <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
         <div class="role">Admin / RT POLINEMA</div>
       </div>
 
-      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label><nav class="menu" aria-label="Menu Admin / RT POLINEMA">
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Admin / RT POLINEMA">
         <a href="dashboard.html" class="">Dashboard</a>
         <a href="unit.html" class="">Unit Go-bike</a>
         <a href="peminjaman.html" class="">Peminjaman</a>
@@ -52,10 +56,10 @@
           <div class="tools">
             <label class="icon-btn date" title="Filter tanggal"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
               fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-              aria-hidden="true"><rect x="3.2" y="4.4" width="13.6" height="12.4" rx="2"/><path d="M3.2 8.4h13.6M7 2.8v3M13 2.8v3"/></svg><input id="tgl" type="date" aria-label="Filter tanggal"></label>
+              aria-hidden="true"><rect x="3.2" y="4.4" width="13.6" height="12.4" rx="2"/><path d="M3.2 8.4h13.6M7 2.8v3M13 2.8v3"/></svg><input type="date" aria-label="Filter tanggal"></label>
             <label class="tool-search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
               fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input id="cari" type="search" placeholder="Cari" aria-label="Cari"></label>
+              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari"></label>
           </div>
         </div>
         <div class="table-wrap">
@@ -65,31 +69,31 @@
                 <th>Nomor Identitas</th>
                 <th>Nama</th>
                 <th>Status Terlambat</th>
+                <th>Keterangan</th>
                 <th>Periode Suspen</th>
-                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>244107060022</td>
                 <td>Mahasiswa C</td>
-                <td><span class="cnt">1 kali</span><span class="chip chip-bad">Suspen 3 hari</span></td>
+                <td>1 kali</td>
+                <td><span class="chip chip-bad">Suspen 3 hari</span></td>
                 <td>03–06 Okt 2026</td>
-                <td><a class="btn-sm" href="#">Detail</a></td>
               </tr>
               <tr>
                 <td>244107060031</td>
                 <td>Mahasiswa D</td>
-                <td><span class="cnt">2 kali</span><span class="chip chip-bad">Suspen 1 minggu</span></td>
+                <td>2 kali</td>
+                <td><span class="chip chip-bad">Suspen 1 minggu</span></td>
                 <td>28 Sep–05 Okt 2026</td>
-                <td><a class="btn-sm" href="#">Detail</a></td>
               </tr>
               <tr>
                 <td>244107060009</td>
                 <td>Mahasiswa E</td>
-                <td><span class="cnt">1 kali</span><span class="chip chip-ok">Aktif</span></td>
-                <td>Selesai (22–25 Sep 2026)</td>
-                <td><a class="btn-sm" href="#">Detail</a></td>
+                <td>1 kali</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+                <td>Selesai</td>
               </tr>
             </tbody>
           </table>
@@ -101,6 +105,7 @@
 
   <script src="../js/common.js"></script>
   <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
 </body>
 
 </html>

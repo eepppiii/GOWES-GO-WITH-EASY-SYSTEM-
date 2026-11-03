@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tambah Petugas/Admin · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body class="admin" data-peran="superadmin">
+
+  <div class="admin-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+        <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
+      <div>
+        <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
+        <div class="role">Super Admin</div>
+      </div>
+
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Super Admin">
+        <a href="dashboard.html" class="">Dashboard</a>
+        <a href="unit.html" class="">Unit Go-bike</a>
+        <a href="peminjaman.html" class="">Peminjaman</a>
+        <a href="sanksi.html" class="">Sanksi</a>
+        <a href="laporan.html" class="">Laporan Kondisi</a>
+        <a href="riwayat.html" class="">Riwayat Peminjaman</a>
+        <a href="tambah-petugas-admin.html" class="on">Tambah Petugas/Admin</a>
+      </nav>
+
+      <a class="menu-logout" href="../login/staff.html">Keluar</a>
+    </aside>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <main class="main">
+      <header class="topbar-a">
+        <div>
+          <h1>Tambah Petugas/Admin</h1>
+          <p>Data Petugas/Admin Go-bike</p>
+        </div>
+        <span class="pill">Super Admin</span>
+      </header>
+
+      <!-- ===== DATA PETUGAS ===== -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Data Petugas Go-bike</h2>
+          <div class="tools">
+            <button type="button" class="icon-btn solid" data-open="m-tambah-user" title="Tambah" aria-label="Tambah"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></button>
+            <label class="tool-search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari"></label>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Shelter</th>
+                <th>Nomor Identitas</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Shelter 1</td>
+                <td>2441070891111</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+              </tr>
+              <tr>
+                <td>Shelter 2</td>
+                <td>244107060014</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== DATA ADMIN ===== -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Data Admin Go-bike</h2>
+          <div class="tools">
+            <button type="button" class="icon-btn solid" data-open="m-tambah-user" title="Tambah" aria-label="Tambah"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></button>
+            <label class="tool-search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari"></label>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Shelter</th>
+                <th>Nomor Identitas</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Shelter 1</td>
+                <td>2441070891111</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+              </tr>
+              <tr>
+                <td>Shelter 2</td>
+                <td>244107060014</td>
+                <td><span class="chip chip-ok">Aktif</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== MODAL: TAMBAH PETUGAS/ADMIN ===== -->
+      <div class="modal" id="m-tambah-user" role="dialog" aria-modal="true" aria-labelledby="m-tambah-user-t">
+        <div class="modal-box">
+          <h2 id="m-tambah-user-t">Tambah Petugas/Admin Go-bike?</h2>
+          <form class="modal-form" onsubmit="return false">
+            <label class="fld ">
+              <span>Letak Shelter</span>
+              <input type="text">
+            </label>
+            <label class="fld ">
+              <span>Petugas/Admin</span>
+              <input type="text">
+            </label>
+            <label class="fld ">
+              <span>Nomor Identitas</span>
+              <input type="text">
+            </label>
+            <button type="submit" class="modal-ok" data-close>Konfirmasi</button>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
+</body>
+
+</html>

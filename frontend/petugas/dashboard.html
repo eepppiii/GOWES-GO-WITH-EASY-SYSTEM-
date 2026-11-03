@@ -18,13 +18,17 @@
   <div class="admin-shell">
 
     <!-- ===== SIDEBAR ===== -->
-    <aside class="sidebar"><input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
       <div>
         <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
         <div class="role">Petugas / Satpam</div>
       </div>
 
-      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label><label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label><nav class="menu" aria-label="Menu Petugas / Satpam">
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Petugas / Satpam">
         <a href="dashboard.html" class="on">Dashboard</a>
         <a href="unit.html" class="">Unit Go-bike</a>
         <a href="peminjaman.html" class="">Peminjaman</a>
@@ -39,8 +43,8 @@
     <main class="main">
       <header class="topbar-a">
         <div>
-          <h1>Dashboard Admin</h1>
-          <p>Senin–Jumat, 08.00–15.30 WIB · Data contoh</p>
+          <h1>Dashboard Petugas</h1>
+          <p>Senin–Jumat, 08.00–15.30 WIB</p>
         </div>
         <span class="pill">Petugas - Satpam</span>
       </header>
@@ -64,9 +68,22 @@
         </div>
       </section>
 
+      <section class="grid-2">
+        <div class="shelter-card">
+          <h3>Shelter 1</h3>
+          <p>Pos Satpam Gedung Direktorat AA</p>
+          <b>5 dari 8 unit tersedia</b>
+        </div>
+        <div class="shelter-card">
+          <h3>Shelter 2</h3>
+          <p>Pos Satpam Gedung Teknik Sipil</p>
+          <b>4 dari 6 unit tersedia</b>
+        </div>
+      </section>
+
       <section class="panel">
         <div class="panel-head">
-          <h2>Peminjaman aktif</h2>
+          <h2>Peminjaman Aktif</h2>
           <a class="link" href="peminjaman.html">Lihat semua</a>
         </div>
         <div class="table-wrap">
@@ -76,7 +93,7 @@
                 <th>Nomor Identitas</th>
                 <th>Unit</th>
                 <th>Shelter</th>
-                <th>Batas kembali</th>
+                <th>Batas Kembali</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -107,24 +124,12 @@
         </div>
       </section>
 
-      <section class="grid-2">
-        <div class="shelter-card">
-          <h3>Shelter 1</h3>
-          <p>Pos Satpam Gedung Direktorat AA</p>
-          <b>5 dari 8 unit tersedia</b>
-        </div>
-        <div class="shelter-card">
-          <h3>Shelter 2</h3>
-          <p>Pos Satpam Gedung Teknik Sipil</p>
-          <b>4 dari 6 unit tersedia</b>
-        </div>
-      </section>
-
     </main>
   </div>
 
   <script src="../js/common.js"></script>
   <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
 </body>
 
 </html>

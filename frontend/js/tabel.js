@@ -1,38 +1,25 @@
-/* GOWES — PENCARIAN & FILTER TANGGAL TABEL (panel petugas/admin/superadmin).
-   #cari = kotak cari teks, #tgl = pilih tanggal (cocok dengan kolom "02 Okt 2026"). */
 document.addEventListener('DOMContentLoaded', function () {
-  var cari = document.getElementById('cari');
-  var tgl = document.getElementById('tgl');
-  if (!cari && !tgl) return;
   var BULAN = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
 
   function formatTanggal(v) {            // "2026-10-02" -> "02 Okt 2026"
     var p = (v || '').split('-');
     return p.length === 3 ? p[2] + ' ' + BULAN[parseInt(p[1], 10) - 1] + ' ' + p[0] : '';
   }
-  function saring() {
-    var q = cari ? cari.value.toLowerCase() : '';
-    var t = tgl ? formatTanggal(tgl.value).toLowerCase() : '';
-    document.querySelectorAll('table.tbl tbody tr').forEach(function (tr) {
-      var teks = tr.textContent.toLowerCase();
-      tr.style.display = (!q || teks.indexOf(q) > -1) && (!t || teks.indexOf(t) > -1) ? '' : 'none';
-    });
-  }
-  if (cari) cari.addEventListener('input', saring);
-  if (tgl) tgl.addEventListener('change', saring);
-});
 
-/* TABEL RESPONSIVE (HP) — salin teks <th> ke atribut data-label tiap <td>,
-   dipakai css/panel.css untuk menampilkan nama kolom saat tabel jadi kartu. */
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('table.tbl').forEach(function (tabel) {
-    var judul = Array.prototype.map.call(tabel.querySelectorAll('thead th'), function (th) {
-      return th.textContent.trim();
-    });
-    tabel.querySelectorAll('tbody tr').forEach(function (tr) {
-      Array.prototype.forEach.call(tr.children, function (td, i) {
-        if (!td.hasAttribute('data-label')) td.setAttribute('data-label', judul[i] || '');
+  document.querySelectorAll('input[type=search], input[type=date]').forEach(function (input) {
+    var panel = input.closest('.panel');
+    var cakupan = panel && panel.querySelector('table.tbl') ? panel : document;
+    var cari = cakupan.querySelector('input[type=search]');
+    var tgl = cakupan.querySelector('input[type=date]');
+
+    function saring() {
+      var q = cari ? cari.value.toLowerCase() : '';
+      var t = tgl ? formatTanggal(tgl.value).toLowerCase() : '';
+      cakupan.querySelectorAll('table.tbl tbody tr').forEach(function (tr) {
+        var teks = tr.textContent.toLowerCase();
+        tr.style.display = (!q || teks.indexOf(q) > -1) && (!t || teks.indexOf(t) > -1) ? '' : 'none';
       });
-    });
+    }
+    input.addEventListener(input.type === 'date' ? 'change' : 'input', saring);
   });
 });
