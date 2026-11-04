@@ -34,3 +34,31 @@ select
     s.lokasi
 from sepeda sp
 join shelter s on sp.id_shelter = s.id_shelter;
+
+-- 5. pilih durasi
+INSERT INTO peminjaman (id_sepeda, id_peminjam, waktu_mulai, durasi_pinjam)
+VALUES ($1, $2, $3, $4)
+RETURNING id_peminjaman, batas_kembali;
+
+-- 6. Cek status suspend (dari tabel sanksi, kalau ada sanksi aktif hari ini)
+SELECT COUNT(*) AS jumlah_sanksi_aktif
+FROM sanksi
+WHERE id_peminjam = $1
+  AND CURRENT_DATE BETWEEN tgl_mulai AND tgl_selesai;
+
+-- 7. Bukti peminjaman
+CREATE VIEW view_bukti_peminjaman AS
+SELECT 
+    p.id_peminjaman,
+    sp.id_sepeda,
+    sp.kode_qr,
+    s.nama_shelter,
+    s.lokasi,
+    pm.nama,
+    pm.no_identitas,
+    p.waktu_mulai,
+    p.batas_kembali
+FROM peminjaman p
+JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
+JOIN shelter s ON sp.id_shelter = s.id_shelter
+JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam;
