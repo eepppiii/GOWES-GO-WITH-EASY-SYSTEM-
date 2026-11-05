@@ -349,7 +349,9 @@ SELECT
     sp.kode_qr,
     s.nama_shelter,
     p.waktu_mulai,
-    p.batas_kembali
+    p.batas_kembali,
+    s.id_shelter,
+    p.id_petugas
 FROM peminjaman p
 JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
 JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
@@ -456,3 +458,18 @@ ORDER BY batas_kembali ASC;
 SELECT * FROM view_unit_gobike
 WHERE id_shelter = $1
 ORDER BY kode_qr;
+
+-- 4. peminjaman aktif petugas (php)
+SELECT * FROM view_peminjaman_aktif_admin
+WHERE id_shelter = $1
+ORDER BY batas_kembali ASC;
+
+-- kotak Verifikasi Bukti (php)
+SELECT * FROM view_peminjaman_aktif_admin
+WHERE id_shelter = $1 AND (no_identitas LIKE $2 OR kode_qr LIKE $2)
+ORDER BY batas_kembali ASC;
+
+-- tombol Konfirmasi Pinjam (php)
+UPDATE peminjaman
+SET id_petugas = $1
+WHERE id_peminjaman = $2 AND id_petugas IS NULL;
