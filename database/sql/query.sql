@@ -11,6 +11,8 @@ from petugas
 union
 select id_peminjam, no_identitas, password, 'peminjam'
 from peminjam;
+--php
+SELECT * FROM view_login WHERE identitas = $1;
 
 -- QUERY TAMPILAN USER
 -- 2. dashboard user (informasi shelter dan unit sepeda yang tersedia)
@@ -22,6 +24,8 @@ select
     (select COUNT(*) from sepeda where id_shelter = s.id_shelter) as total_unit,
     (select COUNT(*) from sepeda where id_shelter = s.id_shelter and status_ketersediaan = 'Tersedia') as unit_tersedia
 from shelter s;
+--php
+SELECT * FROM view_ketersediaan_shelter;
 
 -- 4. hasil scan sepeda
 create view view_detail_sepeda as
@@ -34,6 +38,8 @@ select
     s.lokasi
 from sepeda sp
 join shelter s on sp.id_shelter = s.id_shelter;
+--php
+SELECT * FROM view_detail_sepeda WHERE kode_qr = $1;
 
 -- 5. pilih durasi
 insert into peminjaman (id_sepeda, id_peminjam, waktu_mulai, durasi_pinjam)
@@ -41,10 +47,18 @@ values ($1, $2, $3, $4)
 returning id_peminjaman, batas_kembali;
 
 -- 6. Cek status suspend (dari tabel sanksi, kalau ada sanksi aktif hari ini)
-select COUNT(*) as jumlah_sanksi_aktif
-from sanksi
-where id_peminjam = $1
-  and CURRENT_DATE between tgl_mulai and tgl_selesai;
+CREATE VIEW view_status_sanksi AS
+SELECT 
+    pm.id_peminjam,
+    (SELECT COUNT(*) FROM peminjaman WHERE id_peminjam = pm.id_peminjam AND status_keterlambatan = 'Terlambat') AS jumlah_keterlambatan,
+    (SELECT COUNT(*) FROM sanksi WHERE id_peminjam = pm.id_peminjam AND CURRENT_DATE BETWEEN tgl_mulai AND tgl_selesai) AS sedang_suspen,
+    (SELECT tgl_mulai FROM sanksi WHERE id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_mulai,
+    (SELECT tgl_selesai FROM sanksi WHERE id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_selesai
+FROM peminjam pm;
+
+select sedang_suspen
+from view_status_sanksi
+where id_peminjam = $1;
 
 -- 7. Bukti peminjaman
 create view view_bukti_peminjaman as
@@ -63,6 +77,8 @@ join sepeda sp on p.id_sepeda = sp.id_sepeda
 join shelter s on sp.id_shelter = s.id_shelter
 join peminjam pm on p.id_peminjam = pm.id_peminjam;
 
+SELECT * FROM view_bukti_peminjaman WHERE id_peminjaman = $1;
+
 -- 8. peminjaman saya
 create view view_peminjaman_aktif as
 select 
@@ -76,6 +92,8 @@ from peminjaman p
 join sepeda sp on p.id_sepeda = sp.id_sepeda
 join shelter s on sp.id_shelter = s.id_shelter
 where p.waktu_kembali is null;
+-- php
+SELECT * FROM view_peminjaman_aktif WHERE id_peminjam = $1;
 
 -- 9. update kembalikan go-bike
 update peminjaman
@@ -98,6 +116,8 @@ select
     sp.status_ketersediaan
 from peminjaman p
 join sepeda sp on p.id_sepeda = sp.id_sepeda;
+--php
+SELECT * FROM view_hasil_pengembalian WHERE id_peminjaman = $1;
 
 -- 11. laporan kondisi (input nilai)
 insert into laporan_kondisi (id_peminjaman, nilai_ban, nilai_rem, nilai_rantai, nilai_rangka_bodi, keterangan, tgl_lapor)
@@ -118,6 +138,8 @@ from peminjaman p
 join sepeda sp on p.id_sepeda = sp.id_sepeda
 join shelter s on sp.id_shelter = s.id_shelter
 where p.waktu_kembali is not null;
+-- php
+SELECT * FROM view_riwayat_peminjaman WHERE id_peminjam = $1 ORDER BY waktu_mulai desc;
 
 -- 13. status sanksi
 create view view_status_sanksi as
@@ -128,6 +150,8 @@ select
     (select tgl_mulai from sanksi where id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_mulai,
     (select tgl_selesai from sanksi where id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_selesai
 from peminjam pm;
+-- php
+SELECT * FROM view_status_sanksi WHERE id_peminjam = $1
 
 -- 14. profil peminjam
 create view view_profil_peminjam as
@@ -135,8 +159,9 @@ select
     id_peminjam,
     nama,
     no_identitas,
-    jenis_peminjam
 from peminjam;
+-- php
+SELECT * FROM view_profil_peminjam WHERE id_peminjam = $1;
 
 -- TAMPILAN SUPERADMIN
 --2. dashboard superadmin 
@@ -149,6 +174,8 @@ select
     (select count(distinct id_peminjam) from sanksi WHERE CURRENT_DATE BETWEEN tgl_mulai AND tgl_selesai) AS suspen_aktif,
     (select count(*) from petugas) as petugas_aktif,
     (select count(*) from admin) as admin_aktif;
+-- php
+SELECT * FROM view_ringkasan_superadmin;
 --(shelter pakai view_ketersediaan_shelter)
 -- tabel peminjaman aktif
 create view view_peminjaman_aktif_admin as
@@ -164,6 +191,8 @@ join peminjam pm on p.id_peminjam = pm.id_peminjam
 join sepeda sp on p.id_sepeda = sp.id_sepeda
 join shelter s on sp.id_shelter = s.id_shelter
 where p.waktu_kembali is null;
+-- php
+SELECT * FROM view_peminjaman_aktif_admin ORDER BY batas_kembali asc;
 
 -- 3. unit go-bike
 CREATE VIEW view_unit_gobike AS
@@ -179,6 +208,8 @@ SELECT
      ORDER BY lk.id_laporankondisi DESC LIMIT 1) AS kondisi_terakhir
 FROM sepeda sp
 JOIN shelter s ON sp.id_shelter = s.id_shelter;
+-- php
+SELECT * FROM view_unit_gobike ORDER BY kode_qr;
 
 -- 4. peminjaman aktif
 CREATE VIEW view_peminjaman_aktif_admin AS
@@ -194,7 +225,12 @@ JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
 JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
 JOIN shelter s ON sp.id_shelter = s.id_shelter
 WHERE p.waktu_kembali IS NULL;
--- search di php
+--php
+SELECT * FROM view_peminjaman_aktif_admin ORDER BY batas_kembali ASC;
+-- tombol search di php
+SELECT * FROM view_peminjaman_aktif_admin
+WHERE no_identitas LIKE $1 OR kode_qr LIKE $1
+ORDER BY batas_kembali ASC;
 
 -- 5. Rekap Sanksi
 CREATE VIEW view_sanksi_admin AS
@@ -209,7 +245,12 @@ SELECT
     sk.tgl_selesai
 FROM sanksi sk
 JOIN peminjam pm ON sk.id_peminjam = pm.id_peminjam;
+--php
+SELECT * FROM view_sanksi_admin ORDER BY tgl_mulai DESC;
 -- search di php
+SELECT * FROM view_sanksi_admin
+WHERE no_identitas LIKE $1 OR nama LIKE $1
+ORDER BY tgl_mulai DESC;
 
 -- 6. Laporan Kondisi
 CREATE VIEW view_laporan_kondisi AS
@@ -230,7 +271,12 @@ JOIN peminjaman p ON lk.id_peminjaman = p.id_peminjaman
 JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
 JOIN shelter s ON sp.id_shelter = s.id_shelter
 JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam;
+--php
+SELECT * FROM view_laporan_kondisi ORDER BY tgl_lapor DESC, id_laporankondisi DESC;
 -- search di php
+SELECT * FROM view_laporan_kondisi
+WHERE no_identitas ILIKE $1 OR kode_qr ILIKE $1
+ORDER BY tgl_lapor DESC, id_laporankondisi DESC;
 
 --7. Riwayat peminjaman
 CREATE VIEW view_riwayat_semua_peminjaman AS
@@ -246,3 +292,44 @@ SELECT
 FROM peminjaman p
 JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
 JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda;
+-- php
+SELECT * FROM view_riwayat_semua_peminjaman ORDER BY waktu_mulai DESC;
+-- search di php
+SELECT * FROM view_riwayat_semua_peminjaman
+WHERE no_identitas LIKE $1 OR kode_qr LIKE $1
+ORDER BY waktu_mulai DESC;
+
+-- 8. view data admin
+CREATE VIEW view_data_petugas AS
+SELECT pt.id_petugas, s.nama_shelter, pt.username, pt.status_akun
+FROM petugas pt
+JOIN shelter s ON pt.id_shelter = s.id_shelter;
+-- php
+SELECT * FROM view_data_petugas ORDER BY nama_shelter;
+
+CREATE VIEW view_data_admin AS
+SELECT id_admin, username, status_akun
+FROM admin;
+--php
+SELECT * FROM view_data_admin ORDER BY username;
+
+-- search php
+SELECT * FROM view_data_petugas
+WHERE username LIKE $1 OR nama_shelter LIKE $1;
+
+SELECT * FROM view_data_admin
+WHERE username LIKE $1;
+
+-- tombol add (insert) di php
+INSERT INTO petugas (id_superadmin, id_shelter, username, password)
+VALUES ($1, $2, $3, $4);
+
+INSERT INTO admin (id_superadmin, username, password)
+VALUES ($1, $2, $3);
+
+-- 9. Tambah petugas/admin (php)
+INSERT INTO petugas (id_superadmin, id_shelter, username, password)
+VALUES ($1, $2, $3, $4);
+
+INSERT INTO admin (id_superadmin, username, password)
+VALUES ($1, $2, $3);
