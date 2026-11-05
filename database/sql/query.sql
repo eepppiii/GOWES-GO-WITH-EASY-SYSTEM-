@@ -55,7 +55,7 @@ SELECT
     (SELECT tgl_mulai FROM sanksi WHERE id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_mulai,
     (SELECT tgl_selesai FROM sanksi WHERE id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_selesai
 FROM peminjam pm;
-
+-- php
 select sedang_suspen
 from view_status_sanksi
 where id_peminjam = $1;
@@ -76,7 +76,7 @@ from peminjaman p
 join sepeda sp on p.id_sepeda = sp.id_sepeda
 join shelter s on sp.id_shelter = s.id_shelter
 join peminjam pm on p.id_peminjam = pm.id_peminjam;
-
+--php
 SELECT * FROM view_bukti_peminjaman WHERE id_peminjaman = $1;
 
 -- 8. peminjaman saya
