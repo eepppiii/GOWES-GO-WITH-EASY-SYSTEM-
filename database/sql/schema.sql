@@ -45,6 +45,7 @@ create table sepeda (
 	id_admin int not null,
 	kode_qr varchar(100) not null,
 	status_ketersediaan varchar(20) not null default 'Tersedia',
+	catatan_perawatan varchar(255),
 	
 	foreign key(id_shelter) references shelter (id_shelter),
 	foreign key(id_admin) references admin(id_admin)

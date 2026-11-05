@@ -80,18 +80,20 @@ join peminjam pm on p.id_peminjam = pm.id_peminjam;
 SELECT * FROM view_bukti_peminjaman WHERE id_peminjaman = $1;
 
 -- 8. peminjaman saya
-create view view_peminjaman_aktif as
-select 
+CREATE VIEW view_peminjaman_aktif_admin AS
+SELECT
     p.id_peminjaman,
-    p.id_peminjam,
+    pm.no_identitas,
     sp.kode_qr,
     s.nama_shelter,
     p.waktu_mulai,
-    p.batas_kembali
-from peminjaman p
-join sepeda sp on p.id_sepeda = sp.id_sepeda
-join shelter s on sp.id_shelter = s.id_shelter
-where p.waktu_kembali is null;
+    p.batas_kembali,
+    s.id_shelter
+FROM peminjaman p
+JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
+JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
+JOIN shelter s ON sp.id_shelter = s.id_shelter
+WHERE p.waktu_kembali IS NULL;
 -- php
 SELECT * FROM view_peminjaman_aktif WHERE id_peminjam = $1;
 
@@ -163,6 +165,7 @@ from peminjam;
 -- php
 SELECT * FROM view_profil_peminjam WHERE id_peminjam = $1;
 
+
 -- TAMPILAN SUPERADMIN
 --2. dashboard superadmin 
 -- 6 kartu ringkasan
@@ -205,26 +208,15 @@ SELECT
      FROM laporan_kondisi lk 
      JOIN peminjaman p ON lk.id_peminjaman = p.id_peminjaman 
      WHERE p.id_sepeda = sp.id_sepeda 
-     ORDER BY lk.id_laporankondisi DESC LIMIT 1) AS kondisi_terakhir
+     ORDER BY lk.id_laporankondisi DESC LIMIT 1) AS kondisi_terakhir,
+    s.lokasi,
+    sp.catatan_perawatan
 FROM sepeda sp
 JOIN shelter s ON sp.id_shelter = s.id_shelter;
 -- php
 SELECT * FROM view_unit_gobike ORDER BY kode_qr;
 
 -- 4. peminjaman aktif
-CREATE VIEW view_peminjaman_aktif_admin AS
-SELECT
-    p.id_peminjaman,
-    pm.no_identitas,
-    sp.kode_qr,
-    s.nama_shelter,
-    p.waktu_mulai,
-    p.batas_kembali
-FROM peminjaman p
-JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
-JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
-JOIN shelter s ON sp.id_shelter = s.id_shelter
-WHERE p.waktu_kembali IS NULL;
 --php
 SELECT * FROM view_peminjaman_aktif_admin ORDER BY batas_kembali ASC;
 -- tombol search di php
@@ -333,3 +325,95 @@ VALUES ($1, $2, $3, $4);
 
 INSERT INTO admin (id_superadmin, username, password)
 VALUES ($1, $2, $3);
+
+
+-- TAMPILAN ADMIN
+--2. dashboard admin
+-- 4 kartu statistik
+CREATE VIEW view_ringkasan_admin AS
+SELECT
+    (SELECT COUNT(*) FROM sepeda WHERE status_ketersediaan = 'Tersedia') AS unit_tersedia,
+    (SELECT COUNT(*) FROM peminjaman WHERE waktu_kembali IS NULL) AS sedang_dipinjam,
+    (SELECT COUNT(*) FROM peminjaman WHERE waktu_kembali IS NULL AND batas_kembali < NOW()) AS terlambat,
+    (SELECT COUNT(DISTINCT id_peminjam) FROM sanksi WHERE CURRENT_DATE BETWEEN tgl_mulai AND tgl_selesai) AS suspen_aktif;
+-- php
+SELECT * FROM view_ringkasan_admin;
+-- shelter pakai view_ketersediaan_shelter 
+SELECT * FROM view_ketersediaan_shelter;
+-- tabel peminjaman aktif
+CREATE VIEW view_peminjaman_aktif_admin AS
+SELECT
+    p.id_peminjaman,
+    pm.no_identitas,
+    sp.kode_qr,
+    s.nama_shelter,
+    p.waktu_mulai,
+    p.batas_kembali
+FROM peminjaman p
+JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
+JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
+JOIN shelter s ON sp.id_shelter = s.id_shelter
+WHERE p.waktu_kembali IS NULL;
+--php
+SELECT * FROM view_peminjaman_aktif_admin ORDER BY batas_kembali ASC;
+-- view ketersediaan sepeda per shelter
+CREATE VIEW view_ketersediaan_shelter AS
+SELECT 
+    s.id_shelter, s.nama_shelter, s.lokasi,
+    (SELECT COUNT(*) FROM sepeda WHERE id_shelter = s.id_shelter) AS total_unit,
+    (SELECT COUNT(*) FROM sepeda WHERE id_shelter = s.id_shelter AND status_ketersediaan = 'Tersedia') AS unit_tersedia
+FROM shelter s;
+--php
+SELECT * FROM view_ketersediaan_shelter;
+
+-- 3. Unit go-bike (php)
+SELECT * FROM view_unit_gobike ORDER BY kode_qr;
+
+-- dropdown shelter tambah unit 
+CREATE VIEW view_daftar_shelter AS
+SELECT id_shelter, nama_shelter
+FROM shelter;
+-- php
+SELECT * FROM view_daftar_shelter
+-- tombol tambah unit (insert php)
+INSERT INTO sepeda (id_shelter, id_admin, kode_qr, status_ketersediaan)
+VALUES ($1, $2, $3, 'Tersedia');
+-- tombol ubah unit (php)
+SELECT * FROM view_unit_gobike WHERE id_sepeda = $1;
+-- simpan tombol konfirmasi (php)
+UPDATE sepeda
+SET status_ketersediaan = $1,
+    catatan_perawatan = $2
+WHERE id_sepeda = $3 AND status_ketersediaan <> 'Dipinjam';
+
+-- Tambah unit go bike
+-- BLM FIX KARENA ADA MERK
+
+-- 4. peminjaman aktif (php)
+SELECT * FROM view_peminjaman_aktif_admin ORDER BY batas_kembali ASC;
+-- kotak Verifikasi Bukti (php)
+SELECT * FROM view_peminjaman_aktif_admin
+WHERE no_identitas LIKE $1 OR kode_qr LIKE $1
+ORDER BY batas_kembali ASC;
+
+-- 5. sanksi (php)
+SELECT * FROM view_sanksi_admin ORDER BY tgl_mulai DESC;
+-- kotak search (php)
+SELECT * FROM view_sanksi_admin
+WHERE no_identitas LIKE $1 OR nama LIKE $1
+ORDER BY tgl_mulai DESC;
+
+-- 6. laporan kondisi (php)
+SELECT * FROM view_laporan_kondisi
+ORDER BY tgl_lapor DESC, id_laporankondisi DESC;
+-- kotak search (php)
+SELECT * FROM view_laporan_kondisi
+WHERE no_identitas LIKE $1 OR kode_qr LIKE $1
+ORDER BY tgl_lapor DESC, id_laporankondisi DESC;
+
+-- 7. riwayat peminjaman (php)
+SELECT * FROM view_riwayat_semua_peminjaman ORDER BY waktu_mulai DESC;
+-- kotak search (php)
+SELECT * FROM view_riwayat_semua_peminjaman
+WHERE no_identitas LIKE $1 OR kode_qr LIKE $1
+ORDER BY waktu_mulai DESC;
