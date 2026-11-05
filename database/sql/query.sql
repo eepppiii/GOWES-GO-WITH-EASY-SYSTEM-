@@ -210,7 +210,8 @@ SELECT
      WHERE p.id_sepeda = sp.id_sepeda 
      ORDER BY lk.id_laporankondisi DESC LIMIT 1) AS kondisi_terakhir,
     s.lokasi,
-    sp.catatan_perawatan
+    sp.catatan_perawatan,
+    sp.id_shelter
 FROM sepeda sp
 JOIN shelter s ON sp.id_shelter = s.id_shelter;
 -- php
@@ -417,3 +418,41 @@ SELECT * FROM view_riwayat_semua_peminjaman ORDER BY waktu_mulai DESC;
 SELECT * FROM view_riwayat_semua_peminjaman
 WHERE no_identitas LIKE $1 OR kode_qr LIKE $1
 ORDER BY waktu_mulai DESC;
+
+
+-- TAMPILAN PETUGAS
+-- 2. dashboard petugas
+-- buat filter shelter petugas
+CREATE VIEW view_shelter_petugas AS
+SELECT id_petugas, id_shelter
+FROM petugas;
+-- php
+SELECT id_shelter FROM view_shelter_petugas WHERE id_petugas = $1;
+-- kartu ringkasan
+CREATE VIEW view_ringkasan_petugas AS
+SELECT
+    s.id_shelter,
+    (SELECT COUNT(*) FROM sepeda
+     WHERE id_shelter = s.id_shelter AND status_ketersediaan = 'Tersedia') AS unit_tersedia,
+    (SELECT COUNT(*) FROM peminjaman p
+     JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
+     WHERE sp.id_shelter = s.id_shelter AND p.waktu_kembali IS NULL) AS sedang_dipinjam,
+    (SELECT COUNT(*) FROM peminjaman p
+     JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
+     WHERE sp.id_shelter = s.id_shelter AND p.waktu_kembali IS NULL AND p.batas_kembali < NOW()) AS terlambat,
+    (SELECT COUNT(DISTINCT id_peminjam) FROM sanksi
+     WHERE CURRENT_DATE BETWEEN tgl_mulai AND tgl_selesai) AS suspen_aktif
+FROM shelter s;
+--php
+SELECT * FROM view_ringkasan_petugas WHERE id_shelter = $1;
+-- kartu shelter
+SELECT * FROM view_ketersediaan_shelter WHERE id_shelter = $1;
+-- peminjaman aktif
+SELECT * FROM view_peminjaman_aktif_admin
+WHERE id_shelter = $1
+ORDER BY batas_kembali ASC;
+
+-- 3. unit go-bike petugas (php)
+SELECT * FROM view_unit_gobike
+WHERE id_shelter = $1
+ORDER BY kode_qr;
