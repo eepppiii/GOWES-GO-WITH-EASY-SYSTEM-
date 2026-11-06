@@ -41,24 +41,29 @@ join shelter s on sp.id_shelter = s.id_shelter;
 --php
 SELECT * FROM view_detail_sepeda WHERE kode_qr = $1;
 
--- 5. pilih durasi
-insert into peminjaman (id_sepeda, id_peminjam, waktu_mulai, durasi_pinjam)
-values ($1, $2, $3, $4)
-returning id_peminjaman, batas_kembali;
+-- 5. pilih durasi pratinjau waktu (php)
+SELECT kode_qr, nama_shelter, status_ketersediaan
+FROM view_detail_sepeda
+WHERE id_sepeda = $1;
 
--- 6. Cek status suspend (dari tabel sanksi, kalau ada sanksi aktif hari ini)
-CREATE VIEW view_status_sanksi AS
-SELECT 
-    pm.id_peminjam,
-    (SELECT COUNT(*) FROM peminjaman WHERE id_peminjam = pm.id_peminjam AND status_keterlambatan = 'Terlambat') AS jumlah_keterlambatan,
-    (SELECT COUNT(*) FROM sanksi WHERE id_peminjam = pm.id_peminjam AND CURRENT_DATE BETWEEN tgl_mulai AND tgl_selesai) AS sedang_suspen,
-    (SELECT tgl_mulai FROM sanksi WHERE id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_mulai,
-    (SELECT tgl_selesai FROM sanksi WHERE id_peminjam = pm.id_peminjam ORDER BY tgl_mulai DESC LIMIT 1) AS suspen_terakhir_selesai
-FROM peminjam pm;
--- php
-select sedang_suspen
-from view_status_sanksi
-where id_peminjam = $1;
+-- 6. Cek status suspend dan insert durasi (php)
+-- cek akun suspend (0 = lolos)
+SELECT sedang_suspen FROM view_status_sanksi WHERE id_peminjam = $1;
+-- info Go-bike: "GB-03 · Shelter 1"
+SELECT kode_qr, nama_shelter FROM view_detail_sepeda WHERE id_sepeda = $1;
+
+-- tombol konfirmasi peminjaman (php)
+BEGIN;
+-- 1. kunci sepeda dulu (kalau 0 baris berubah = sepeda sudah diambil orang lain, ROLLBACK)
+UPDATE sepeda
+SET status_ketersediaan = 'Dipinjam'
+WHERE id_sepeda = $1 AND status_ketersediaan = 'Tersedia';
+-- 2. buat peminjaman (batas_kembali diisi trigger)
+INSERT INTO peminjaman (id_sepeda, id_peminjam, waktu_mulai, durasi_pinjam)
+VALUES ($1, $2, NOW(), $3)
+RETURNING id_peminjaman, batas_kembali;
+
+COMMIT;
 
 -- 7. Bukti peminjaman
 create view view_bukti_peminjaman as
