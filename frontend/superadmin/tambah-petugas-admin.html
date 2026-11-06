@@ -18,7 +18,6 @@
   <div class="admin-shell">
 
     <!-- ===== SIDEBAR ===== -->
-        <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
 
@@ -30,12 +29,12 @@
       <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
 
       <nav class="menu" aria-label="Menu Super Admin">
-        <a href="dashboard.html" class="">Dashboard</a>
-        <a href="unit.html" class="">Unit Go-bike</a>
-        <a href="peminjaman.html" class="">Peminjaman</a>
-        <a href="sanksi.html" class="">Sanksi</a>
-        <a href="laporan.html" class="">Laporan Kondisi</a>
-        <a href="riwayat.html" class="">Riwayat Peminjaman</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="unit.html">Unit Go-bike</a>
+        <a href="peminjaman.html">Peminjaman</a>
+        <a href="sanksi.html">Sanksi</a>
+        <a href="laporan.html">Laporan Kondisi</a>
+        <a href="riwayat.html">Riwayat Peminjaman</a>
         <a href="tambah-petugas-admin.html" class="on">Tambah Petugas/Admin</a>
       </nav>
 
@@ -52,17 +51,13 @@
         <span class="pill">Super Admin</span>
       </header>
 
-      <!-- ===== DATA PETUGAS ===== -->
-      <section class="panel">
+      <!-- ===== TABEL PETUGAS: Shelter + Nomor Identitas + Nama (password tidak ditampilkan) ===== -->
+      <section class="panel" id="panel-petugas">
         <div class="panel-head">
           <h2>Data Petugas Go-bike</h2>
           <div class="tools">
-            <button type="button" class="icon-btn solid" data-open="m-tambah-user" title="Tambah" aria-label="Tambah"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></button>
-            <label class="tool-search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari"></label>
+            <button type="button" class="icon-btn solid" data-open="m-tambah-petugas" title="Tambah Petugas" aria-label="Tambah Petugas"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg></button>
+            <label class="tool-search"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari petugas"></label>
           </div>
         </div>
         <div class="table-wrap">
@@ -70,16 +65,19 @@
             <thead>
               <tr>
                 <th>Shelter</th>
+                <th>Nama</th>
                 <th>Nomor Identitas</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Shelter 1</td>
+                <td>Shelter 1 (Gedung AA)</td>
+                <td>Satpam 1</td>
                 <td>2441070891111</td>
               </tr>
               <tr>
-                <td>Shelter 2</td>
+                <td>Shelter 2 (Gedung Sipil)</td>
+                <td>Satpam 2</td>
                 <td>244107060014</td>
               </tr>
             </tbody>
@@ -87,31 +85,30 @@
         </div>
       </section>
 
-      <!-- ===== DATA ADMIN ===== -->
-      <section class="panel">
+      <!-- ===== TABEL ADMIN: Nomor Identitas + Nama (password tidak ditampilkan) ===== -->
+      <section class="panel" id="panel-admin">
         <div class="panel-head">
           <h2>Data Admin Go-bike</h2>
           <div class="tools">
-            <button type="button" class="icon-btn solid" data-open="m-tambah-user" title="Tambah" aria-label="Tambah"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg></button>
-            <label class="tool-search"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-              fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-              aria-hidden="true"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari"></label>
+            <button type="button" class="icon-btn solid" data-open="m-tambah-admin" title="Tambah Admin" aria-label="Tambah Admin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg></button>
+            <label class="tool-search"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari admin"></label>
           </div>
         </div>
         <div class="table-wrap">
           <table class="tbl">
             <thead>
               <tr>
+                <th>Nama</th>
                 <th>Nomor Identitas</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>Farrel Raissa</td>
                 <td>2441070891111</td>
               </tr>
               <tr>
+                <td>Reffi Dwino</td>
                 <td>244107060014</td>
               </tr>
             </tbody>
@@ -119,24 +116,54 @@
         </div>
       </section>
 
-      <!-- ===== MODAL: TAMBAH PETUGAS/ADMIN ===== -->
-      <div class="modal" id="m-tambah-user" role="dialog" aria-modal="true" aria-labelledby="m-tambah-user-t">
+      <!-- ===== DIALOG TAMBAH PETUGAS: Letak Shelter, Nomor Identitas, Nama, Password ===== -->
+      <div class="modal" id="m-tambah-petugas" role="dialog" aria-modal="true" aria-labelledby="m-tambah-petugas-t">
         <div class="modal-box">
-          <h2 id="m-tambah-user-t">Tambah Petugas/Admin Go-bike?</h2>
-          <form class="modal-form" onsubmit="return false">
-            <label class="fld ">
+          <h2 id="m-tambah-petugas-t">Tambah Petugas Go-bike?</h2>
+          <form class="modal-form" data-tambah="panel-petugas" novalidate>
+            <label class="fld">
               <span>Letak Shelter</span>
-              <input type="text">
+              <select name="shelter" required>
+                <option value="" disabled selected>Pilih shelter</option>
+                <option value="Shelter 1">Shelter 1 (Gedung AA)</option>
+                <option value="Shelter 2">Shelter 2 (Gedung Sipil)</option>
+              </select>
             </label>
-            <label class="fld ">
-              <span>Petugas/Admin</span>
-              <input type="text">
+            <label class="fld">
+              <span>Nama</span>
+              <input type="text" name="nama" required>
             </label>
-            <label class="fld ">
+            <label class="fld">
               <span>Nomor Identitas</span>
-              <input type="text">
+              <input type="text" name="nim" inputmode="numeric" required>
             </label>
-            <button type="submit" class="modal-ok" data-close>Konfirmasi</button>
+            <label class="fld">
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="new-password" required>
+            </label>
+            <button type="submit" class="modal-ok">Konfirmasi</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== DIALOG TAMBAH ADMIN: Nomor Identitas, Nama, Password ===== -->
+      <div class="modal" id="m-tambah-admin" role="dialog" aria-modal="true" aria-labelledby="m-tambah-admin-t">
+        <div class="modal-box">
+          <h2 id="m-tambah-admin-t">Tambah Admin Go-bike?</h2>
+          <form class="modal-form" data-tambah="panel-admin" novalidate>
+            <label class="fld">
+              <span>Nama</span>
+              <input type="text" name="nama" required>
+            </label>
+            <label class="fld">
+              <span>Nomor Identitas</span>
+              <input type="text" name="nim" inputmode="numeric" required>
+            </label>
+            <label class="fld">
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="new-password" required>
+            </label>
+            <button type="submit" class="modal-ok">Konfirmasi</button>
           </form>
         </div>
       </div>
@@ -147,6 +174,7 @@
   <script src="../js/common.js"></script>
   <script src="../js/tabel.js"></script>
   <script src="../js/modal.js"></script>
+  <script src="../js/tambah-petugas.js"></script>
 </body>
 
 </html>
