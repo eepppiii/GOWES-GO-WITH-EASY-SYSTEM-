@@ -455,10 +455,41 @@ SELECT * FROM view_unit_gobike
 WHERE id_shelter = $1
 ORDER BY kode_qr;
 
--- 4. peminjaman aktif petugas (php)
-SELECT * FROM view_peminjaman_aktif_admin
+-- 4. peminjaman aktif petugas 
+CREATE VIEW view_peminjaman_petugas AS
+SELECT
+    p.id_peminjaman,
+    pm.no_identitas,
+    sp.kode_qr,
+    p.waktu_mulai,
+    p.batas_kembali,
+    p.waktu_kembali,
+    p.id_petugas,
+    p.id_petugas_kembali,
+    sp.id_shelter
+FROM peminjaman p
+JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
+JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda
+WHERE p.id_petugas_kembali IS NULL;
+--php
+SELECT * FROM view_peminjaman_petugas
 WHERE id_shelter = $1
 ORDER BY batas_kembali ASC;
+-- tombol konfirmasi kembali petugas
+BEGIN;
+
+UPDATE peminjaman
+SET id_petugas_kembali = $1
+WHERE id_peminjaman = $2
+  AND waktu_kembali IS NOT NULL
+  AND id_petugas_kembali IS NULL;
+
+UPDATE sepeda
+SET status_ketersediaan = 'Tersedia'
+WHERE id_sepeda = (SELECT id_sepeda FROM peminjaman WHERE id_peminjaman = $2);
+
+COMMIT;
+
 -- kotak Verifikasi Bukti (php)
 SELECT * FROM view_peminjaman_aktif_admin
 WHERE id_shelter = $1 AND (no_identitas LIKE $2 OR kode_qr LIKE $2)
