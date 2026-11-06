@@ -27,15 +27,17 @@ if ($is_logged_in) {
     $nama_user = "Login";
     $inisial   = "?";
     
-    $href_peminjaman = "#";
-    $href_scan       = "#";
-    $href_profil     = "#";
+    // Arahkan semua link langsung ke halaman login jika belum login
+    $href_peminjaman = "../auth/login.php";
+    $href_scan       = "../auth/login.php";
+    $href_profil     = "../auth/login.php";
     
     // Sesuaikan path ke folder 'auth' (karena login sudah dipindah ke auth)
     $link_user_area  = "../auth/login.php"; 
     
-    $disabled_style = "style='opacity: 0.4; pointer-events: none; cursor: not-allowed;'";
-    $disabled_title = "title='Anda harus login terlebih dahulu'";
+    // Kosongkan style dan title agar tombol tidak disable (bisa diklik)
+    $disabled_style = "";
+    $disabled_title = "";
 }
 
 // ==========================================
