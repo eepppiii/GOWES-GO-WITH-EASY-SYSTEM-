@@ -65,24 +65,14 @@ RETURNING id_peminjaman, batas_kembali;
 
 COMMIT;
 
--- 7. Bukti peminjaman
-create view view_bukti_peminjaman as
-select 
-    p.id_peminjaman,
-    sp.id_sepeda,
-    sp.kode_qr,
-    s.nama_shelter,
-    s.lokasi,
-    pm.nama,
-    pm.no_identitas,
-    p.waktu_mulai,
-    p.batas_kembali
-from peminjaman p
-join sepeda sp on p.id_sepeda = sp.id_sepeda
-join shelter s on sp.id_shelter = s.id_shelter
-join peminjam pm on p.id_peminjam = pm.id_peminjam;
---php
-SELECT * FROM view_bukti_peminjaman WHERE id_peminjaman = $1;
+-- 7. bukti peminjaman: cek status konfirmasi petugas (php)
+CREATE VIEW view_status_konfirmasi AS
+SELECT id_peminjaman, id_petugas
+FROM peminjaman;
+-- php
+SELECT * FROM view_status_konfirmasi WHERE id_peminjaman = $1;
+-- id_petugas masih kosong = tombol "Lihat Peminjaman" belum aktif
+-- id_petugas terisi      = tombol aktif
 
 -- 8. peminjaman saya
 CREATE VIEW view_peminjaman_aktif_admin AS
