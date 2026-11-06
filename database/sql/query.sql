@@ -281,7 +281,8 @@ SELECT
     p.durasi_pinjam,
     p.batas_kembali,
     p.waktu_kembali,
-    p.status_keterlambatan
+    p.status_keterlambatan,
+    sp.id_shelter
 FROM peminjaman p
 JOIN peminjam pm ON p.id_peminjam = pm.id_peminjam
 JOIN sepeda sp ON p.id_sepeda = sp.id_sepeda;
@@ -463,13 +464,26 @@ ORDER BY kode_qr;
 SELECT * FROM view_peminjaman_aktif_admin
 WHERE id_shelter = $1
 ORDER BY batas_kembali ASC;
-
 -- kotak Verifikasi Bukti (php)
 SELECT * FROM view_peminjaman_aktif_admin
 WHERE id_shelter = $1 AND (no_identitas LIKE $2 OR kode_qr LIKE $2)
 ORDER BY batas_kembali ASC;
-
 -- tombol Konfirmasi Pinjam (php)
 UPDATE peminjaman
 SET id_petugas = $1
 WHERE id_peminjaman = $2 AND id_petugas IS NULL;
+
+-- 6. Laporan kondisi petugas (php)
+SELECT * FROM view_laporan_kondisi
+WHERE id_shelter = $1
+ORDER BY tgl_lapor DESC, id_laporankondisi DESC;
+
+-- 7. Riwayat peminjaman petugas (php)
+SELECT * FROM view_riwayat_semua_peminjaman
+WHERE id_shelter = $1
+ORDER BY waktu_mulai DESC;
+
+-- tombol Cari (php)
+SELECT * FROM view_riwayat_semua_peminjaman
+WHERE id_shelter = $1 AND (no_identitas LIKE $2 OR kode_qr LIKE $2)
+ORDER BY waktu_mulai DESC;
