@@ -70,10 +70,12 @@ create table peminjaman(
 	waktu_kembali timestamp,
 	batas_kembali timestamp not null,
 	status_keterlambatan varchar(20) not null default 'Tepat Waktu',
-	
+	id_petugas_kembali int,
+
 	foreign key(id_sepeda) references sepeda(id_sepeda),
 	foreign key (id_peminjam) references peminjam(id_peminjam),
-	foreign key(id_petugas) references petugas(id_petugas)
+	foreign key(id_petugas) references petugas(id_petugas),
+	foreign key(id_petugas_kembali) references petugas(id_petugas)
 );
 
 -- Tabel laporan_kondisi
