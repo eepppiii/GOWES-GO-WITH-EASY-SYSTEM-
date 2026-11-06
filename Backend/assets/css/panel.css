@@ -1,0 +1,150 @@
+/* PANEL STAFF — dipakai petugas/, admin/, superadmin/ */
+
+/* ========================================= */
+/* PERBAIKAN SIDEBAR & LOGO                  */
+/* ========================================= */
+.nav-toggle { display: none !important; }
+.sidebar .logo { display: block; margin-bottom: 5px; }
+.sidebar .logo img { height: 32px; width: auto; display: block; object-fit: contain; }
+.sidebar-header { display: flex; flex-direction: column; position: relative; width: 100%; }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; position: absolute; top: 5px; right: 0; }
+.hamburger span { display: block; width: 24px; height: 2px; background-color: #fff; border-radius: 2px; transition: 0.3s; }
+
+/* ========================================= */
+/* LAYOUT UTAMA                              */
+/* ========================================= */
+body.admin { background: var(--page); }
+.admin-shell { display: flex; min-height: 100vh; }
+.sidebar { width: 240px; flex: none; background: var(--primary-dark); color: #fff; padding: 32px 24px 28px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+.sidebar .role { font-size: 11px; color: var(--side-label); margin-top: 10px; }
+.menu { margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.menu a { display: block; padding: 12px 14px; border-radius: 10px; font-size: 14px; color: var(--side-muted); transition: background .15s; }
+.menu a.on { background: var(--primary); color: #fff; font-weight: 600; }
+.menu a:hover:not(.on) { background: rgba(255,255,255,.07); }
+.menu-logout { display: block; padding: 12px 14px; border-radius: 10px; font-size: 14px; color: var(--side-muted); cursor: pointer; }
+.menu-logout:hover { background: rgba(255,255,255,.07); color: #fff; }
+.main { flex: 1; padding: 32px 36px 48px; min-width: 0; }
+.topbar-a { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.topbar-a h1 { font-size: 26px; font-weight: 700; line-height: 31px; }
+.topbar-a p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.pill { background: #fff; color: var(--primary); font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 99px; white-space: nowrap; }
+
+/* ========================================= */
+/* STATISTIK & PANEL                         */
+/* ========================================= */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 22px; }
+.stat { background: #fff; border-radius: 16px; padding: 18px 20px; }
+.stat .k { font-size: 13px; color: var(--muted); }
+.stat .v { font-size: 36px; font-weight: 700; margin-top: 4px; line-height: 1.2; }
+
+.panel { background: #fff; border-radius: 16px; padding: 20px 24px; margin-top: 22px; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 28px; }
+.panel-head h2 { font-size: 17px; font-weight: 700; }
+.link { font-size: 13px; font-weight: 600; color: var(--primary); }
+
+/* ========================================= */
+/* TABEL                                     */
+/* ========================================= */
+.table-wrap { overflow-x: auto; }
+table.tbl { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.tbl th { text-align: left; font-size: 13px; font-weight: 600; color: var(--muted); padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl td { font-size: 13px; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); height: 46px; white-space: nowrap; }
+.tbl tr:last-child td { border-bottom: 0; }
+
+/* ========================================= */
+/* KARTU SHELTER & TOMBOL                    */
+/* ========================================= */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+.shelter-card { background: #fff; border-radius: 16px; padding: 18px 20px; }
+.shelter-card h3 { font-size: 15px; font-weight: 700; }
+.shelter-card p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.shelter-card b { display: block; font-size: 13px; font-weight: 600; color: var(--primary); margin-top: 4px; }
+
+.btn-sm { display: inline-block; height: 28px; line-height: 28px; padding: 0 12px; border-radius: 8px; font-size: 12px; font-weight: 600; background: var(--tint); color: var(--primary); transition: filter .15s; cursor: pointer; border: none; }
+.btn-sm:hover { filter: brightness(.96); }
+.btn-sm.solid { background: var(--primary); color: #fff; }
+.btn-sm.solid:hover { filter: brightness(1.1); }
+
+.search-row { display: flex; align-items: center; gap: 12px; }
+.search-row h2 { font-size: 15px; font-weight: 700; white-space: nowrap; }
+.search-row .inp { flex: 1; height: 38px; border: 0; border-radius: 10px; background: var(--surface); padding: 0 16px; font: 400 13px 'Albert Sans', sans-serif; outline: none; }
+.search-row .inp:focus { box-shadow: 0 0 0 2px var(--primary); }
+
+/* ========================================= */
+/* RESPONSIVE (MOBILE / TABLET)              */
+/* ========================================= */
+@media (max-width: 1100px) {
+  .admin-shell { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; flex-direction: column; padding: 16px 20px; }
+  .sidebar-header { flex-direction: row; align-items: center; justify-content: space-between; }
+  .sidebar .role { display: none; }
+  .hamburger { display: flex; position: static; }
+  .menu { display: none; flex-direction: column; width: 100%; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .nav-toggle:checked ~ .menu { display: flex; }
+  .menu-logout { display: none; width: 100%; margin-top: 10px; text-align: center; }
+  .nav-toggle:checked ~ .menu-logout { display: block; }
+  .main { padding: 24px 20px 40px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ========================================= */
+/* CUSTOM CSS UNTUK HALAMAN DASHBOARD PETUGAS*/
+/* ========================================= */
+.stat { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid transparent; cursor: default; border-bottom: 3px solid transparent; }
+.stat:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(58, 50, 165, 0.12); border-color: rgba(58, 50, 165, 0.1); border-bottom-color: var(--primary); }
+.stat .v { transition: transform 0.3s ease; }
+.stat:hover .v { transform: scale(1.05); }
+.tbl tbody tr { transition: background-color 0.25s ease, box-shadow 0.25s ease; }
+.tbl tbody tr:hover { background-color: #f4f6fb; box-shadow: inset 3px 0 0 var(--primary); }
+.shelter-card { transition: all 0.3s ease; border-left: 4px solid transparent; cursor: default; }
+.shelter-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); border-left-color: var(--primary); background: #fafafa; }
+.link { transition: color 0.2s ease; position: relative; text-decoration: none; }
+.link::after { content: ''; position: absolute; width: 0%; height: 2px; bottom: -2px; left: 0; background-color: var(--primary); transition: width 0.3s ease; }
+.link:hover::after { width: 100%; }
+.chip { transition: transform 0.2s ease; }
+.chip:hover { transform: scale(1.05); }
+
+/* ========================================= */
+/* STYLE MODAL LOGOUT                        */
+/* ========================================= */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(16, 14, 60, 0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 9999; opacity: 0; transition: opacity 0.3s ease; }
+.modal-overlay.active { display: flex; opacity: 1; }
+.modal-content { background: #ffffff; padding: 30px; border-radius: 24px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transform: translateY(20px); transition: transform 0.3s ease; }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.modal-icon { width: 60px; height: 60px; border-radius: 50%; background: #fee2e2; color: #ef4444; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.modal-icon svg { width: 30px; height: 30px; }
+.modal-content h2 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: #1e293b; }
+.modal-content p { font-size: 14px; color: #64748b; margin-bottom: 24px; line-height: 1.5; }
+.modal-actions { display: flex; gap: 12px; justify-content: center; }
+.btn-cancel { flex: 1; padding: 14px; border-radius: 12px; border: 1.5px solid #e2e8f0; background: #ffffff; color: #475569; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.2s ease; }
+.btn-cancel:hover { background: #f8fafc; border-color: #cbd5e1; }
+.btn-confirm { flex: 1; padding: 14px; border-radius: 12px; border: none; background: #ef4444; color: #ffffff; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; }
+.btn-confirm:hover { background: #dc2626; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+
+/* ========================================= */
+/* CUSTOM CSS UNTUK TOOLBAR PENCARIAN        */
+/* (Dipakai di Riwayat & Laporan)            */
+/* ========================================= */
+.panel-head-tools { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+.panel-head-tools h2 { font-size: 17px; font-weight: 700; margin: 0; }
+.toolbar-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+/* Desain Input Pencarian */
+.input-wrapper { display: flex; align-items: center; border: 1.5px solid var(--primary); border-radius: 8px; overflow: hidden; background: #fff; height: 36px; }
+.inp-cari { border: none; padding: 0 12px; font-family: inherit; font-size: 12px; outline: none; min-width: 180px; color: var(--ink); height: 100%; }
+.inp-cari::placeholder { color: var(--muted); }
+.btn-cari { background: var(--primary); color: white; border: none; padding: 0 14px; height: 100%; font-weight: 600; font-size: 12px; cursor: pointer; transition: 0.2s; }
+.btn-cari:hover { background: var(--primary-dark); }
+
+/* Desain Tombol Tanggal */
+.btn-filter { display: inline-flex; align-items: center; gap: 6px; background: var(--primary); color: white; border: none; padding: 0 14px; height: 36px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; text-decoration: none; }
+.btn-filter:hover { background: var(--primary-dark); }
+.btn-filter svg { width: 14px; height: 14px; }
+
+/* Sembunyikan input date asli */
+#hiddenDateInput { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+
+/* Hover Tabel */
+.tbl tbody tr { transition: background 0.2s; }
+.tbl tbody tr:hover { background-color: #f8fafc; }

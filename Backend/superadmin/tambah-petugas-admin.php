@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tambah Petugas/Admin · GOWES</title>
+  <link rel="icon" href="../img/logo.png">
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/panel.css">
+</head>
+
+<body class="admin" data-peran="superadmin">
+
+  <div class="admin-shell">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Buka atau tutup menu">
+
+      <div>
+        <a class="logo" href="dashboard.html"><img src="../img/logo-white.png" alt="GOWES"></a>
+        <div class="role">Super Admin</div>
+      </div>
+
+      <label class="hamburger" for="nav-toggle" aria-label="Buka menu"><span></span><span></span><span></span></label>
+
+      <nav class="menu" aria-label="Menu Super Admin">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="unit.html">Unit Go-bike</a>
+        <a href="peminjaman.html">Peminjaman</a>
+        <a href="sanksi.html">Sanksi</a>
+        <a href="laporan.html">Laporan Kondisi</a>
+        <a href="riwayat.html">Riwayat Peminjaman</a>
+        <a href="tambah-petugas-admin.html" class="on">Tambah Petugas/Admin</a>
+      </nav>
+
+      <a class="menu-logout" href="../login/staff.html">Keluar</a>
+    </aside>
+
+    <!-- ===== KONTEN UTAMA ===== -->
+    <main class="main">
+      <header class="topbar-a">
+        <div>
+          <h1>Tambah Petugas/Admin</h1>
+          <p>Data Petugas/Admin Go-bike</p>
+        </div>
+        <span class="pill">Super Admin</span>
+      </header>
+
+      <!-- ===== TABEL PETUGAS: Shelter + Nomor Identitas + Nama (password tidak ditampilkan) ===== -->
+      <section class="panel" id="panel-petugas">
+        <div class="panel-head">
+          <h2>Data Petugas Go-bike</h2>
+          <div class="tools">
+            <button type="button" class="icon-btn solid" data-open="m-tambah-petugas" title="Tambah Petugas" aria-label="Tambah Petugas"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg></button>
+            <label class="tool-search"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari petugas"></label>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Shelter</th>
+                <th>Nama</th>
+                <th>Nomor Identitas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Shelter 1 (Gedung AA)</td>
+                <td>Satpam 1</td>
+                <td>2441070891111</td>
+              </tr>
+              <tr>
+                <td>Shelter 2 (Gedung Sipil)</td>
+                <td>Satpam 2</td>
+                <td>244107060014</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== TABEL ADMIN: Nomor Identitas + Nama (password tidak ditampilkan) ===== -->
+      <section class="panel" id="panel-admin">
+        <div class="panel-head">
+          <h2>Data Admin Go-bike</h2>
+          <div class="tools">
+            <button type="button" class="icon-btn solid" data-open="m-tambah-admin" title="Tambah Admin" aria-label="Tambah Admin"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg></button>
+            <label class="tool-search"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="9" r="5.4"/><path d="m13.2 13.2 3.6 3.6"/></svg><input type="search" placeholder="Cari" aria-label="Cari admin"></label>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Nomor Identitas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Farrel Raissa</td>
+                <td>2441070891111</td>
+              </tr>
+              <tr>
+                <td>Reffi Dwino</td>
+                <td>244107060014</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== DIALOG TAMBAH PETUGAS: Letak Shelter, Nomor Identitas, Nama, Password ===== -->
+      <div class="modal" id="m-tambah-petugas" role="dialog" aria-modal="true" aria-labelledby="m-tambah-petugas-t">
+        <div class="modal-box">
+          <h2 id="m-tambah-petugas-t">Tambah Petugas Go-bike?</h2>
+          <form class="modal-form" data-tambah="panel-petugas" novalidate>
+            <label class="fld">
+              <span>Letak Shelter</span>
+              <select name="shelter" required>
+                <option value="" disabled selected>Pilih shelter</option>
+                <option value="Shelter 1">Shelter 1 (Gedung AA)</option>
+                <option value="Shelter 2">Shelter 2 (Gedung Sipil)</option>
+              </select>
+            </label>
+            <label class="fld">
+              <span>Nama</span>
+              <input type="text" name="nama" required>
+            </label>
+            <label class="fld">
+              <span>Nomor Identitas</span>
+              <input type="text" name="nim" inputmode="numeric" required>
+            </label>
+            <label class="fld">
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="new-password" required>
+            </label>
+            <button type="submit" class="modal-ok">Konfirmasi</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== DIALOG TAMBAH ADMIN: Nomor Identitas, Nama, Password ===== -->
+      <div class="modal" id="m-tambah-admin" role="dialog" aria-modal="true" aria-labelledby="m-tambah-admin-t">
+        <div class="modal-box">
+          <h2 id="m-tambah-admin-t">Tambah Admin Go-bike?</h2>
+          <form class="modal-form" data-tambah="panel-admin" novalidate>
+            <label class="fld">
+              <span>Nama</span>
+              <input type="text" name="nama" required>
+            </label>
+            <label class="fld">
+              <span>Nomor Identitas</span>
+              <input type="text" name="nim" inputmode="numeric" required>
+            </label>
+            <label class="fld">
+              <span>Password</span>
+              <input type="password" name="password" autocomplete="new-password" required>
+            </label>
+            <button type="submit" class="modal-ok">Konfirmasi</button>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/common.js"></script>
+  <script src="../js/tabel.js"></script>
+  <script src="../js/modal.js"></script>
+  <script src="../js/tambah-petugas.js"></script>
+</body>
+
+</html>

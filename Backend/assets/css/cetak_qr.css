@@ -1,0 +1,165 @@
+/* ========================================= */
+/* CUSTOM CSS: MODAL QR CODE & TAMBAH UNIT   */
+/* ========================================= */
+
+/* Grid untuk menampung QR */
+.qr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+    max-height: 60vh; /* Agar bisa di-scroll jika sepeda banyak */
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.qr-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.qr-card img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.qr-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.qr-sub {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* Penanda unit yang baru ditambahkan */
+.qr-card-new {
+    border: 2px solid var(--primary);
+    box-shadow: 0 4px 14px rgba(59, 47, 160, 0.25);
+}
+
+.row-new td {
+    background: #f1f0fd;
+}
+
+/* Pesan sukses / error */
+.flash {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 24px;          /* jarak dari judul & dari panel */
+    padding: 14px 16px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.4;
+    border: 1px solid transparent;
+    transition: opacity .3s ease, transform .3s ease;
+}
+.flash.hide { opacity: 0; transform: translateY(-6px); }
+.flash-icon { display: flex; flex-shrink: 0; }
+.flash-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.flash-text small { font-size: 12.5px; opacity: .85; }
+.flash-close {
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: inherit;
+    opacity: .6;
+    cursor: pointer;
+    padding: 0 4px;
+}
+.flash-close:hover { opacity: 1; }
+.flash-success { background: #ecfaf1; color: #166534; border-color: #bfe8cf; }
+.flash-error   { background: #fdeeee; color: #991b1b; border-color: #f4c4c4; }
+
+/* Form di modal tambah unit */
+.form-group {
+    margin-bottom: 14px;
+}
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 6px;
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    color: #1e1b4b;
+}
+.form-group input[readonly] {
+    background: #f8fafc;
+    font-weight: 700;
+    color: var(--primary);
+}
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 0;
+}
+
+.form-note {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #9a3412;
+}
+.form-group select:disabled {
+    background: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+/* CSS Khusus Print: Hanya cetak isi Modal QR */
+@media print {
+    body * {
+        visibility: hidden; /* Sembunyikan semua elemen */
+    }
+    #qrModal, #qrModal * {
+        visibility: visible; /* Tampilkan hanya modal QR */
+    }
+    #qrModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #fff;
+        display: block !important; /* Paksa tampil */
+    }
+    .modal-content-qr {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    .btn-cancel, .btn-print, .btn-close-modal {
+        display: none !important; /* Sembunyikan tombol saat print */
+    }
+    .qr-grid {
+        max-height: none !important;
+        overflow: visible !important;
+        grid-template-columns: repeat(3, 1fr) !important; /* 3 kolom saat print */
+    }
+    .qr-card-new {
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+    }
+}

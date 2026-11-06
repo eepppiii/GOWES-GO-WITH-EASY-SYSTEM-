@@ -1,0 +1,257 @@
+/* LOGIN MAHASISWA — Diperbarui dengan Animasi Panel Kiri */
+
+/* ========================================= */
+/* KEYFRAMES ANIMASI                         */
+/* ========================================= */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatShape {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-30px) scale(1.05); }
+}
+
+@keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* ========================================= */
+/* BASE LAYOUT (MOBILE)                      */
+/* ========================================= */
+body.login { 
+    background-color: #f1f5f9; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Albert Sans', sans-serif; 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-wrap { 
+    display: flex; 
+    flex-direction: column; 
+    width: 100%;
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
+.login-brand { display: none; }
+.desktop-title, .desktop-sub { display: none; }
+
+.login-form { 
+    background: #ffffff;
+    border-radius: 24px; 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); 
+    padding: 40px 24px 30px; 
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto;
+    min-height: 600px; 
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; 
+}
+
+.mobile-logo { text-align: center; margin-bottom: 30px; margin-top: 10px; }
+.mobile-logo img { height: 60px; width: auto; margin-bottom: 12px; }
+.mobile-logo .mobile-sub { font-size: 14px; color: #64748b; margin: 0; }
+
+.login-form-in { width: 100%; display: flex; flex-direction: column; gap: 16px; }
+.login-form form { display: flex; flex-direction: column; gap: 16px; }
+
+/* ========================================= */
+/* FORM ELEMENTS & INPUTS                    */
+/* ========================================= */
+.input {
+    width: 100%;
+    padding: 16px 20px;
+    background-color: #f8fafc; 
+    border: 2px solid transparent; 
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #1e293b;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:hover { background-color: #f1f5f9; }
+
+.input:focus {
+    outline: none;
+    border-color: #3A32A5;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(58, 50, 165, 0.1);
+}
+
+.input::placeholder { color: #94a3b8; font-weight: 400; }
+
+.password-wrapper { position: relative; width: 100%; }
+.password-wrapper .input { padding-right: 50px; }
+
+.toggle-password {
+    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    cursor: pointer; color: #94a3b8; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.toggle-password:hover { color: #3A32A5; transform: translateY(-50%) scale(1.15); }
+.toggle-password svg { width: 20px; height: 20px; }
+
+/* ========================================= */
+/* TOMBOL MASUK                              */
+/* ========================================= */
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #4b3b8c 0%, #3A32A5 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(58, 50, 165, 0.3); 
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #3A32A5 0%, #2b257c 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(58, 50, 165, 0.4);
+}
+
+.btn-primary:active { transform: translateY(-1px); }
+
+.back-wrapper { display: block; text-align: center; margin-top: 24px; }
+.back-to-dashboard { 
+    color: #64748b; font-size: 14px; font-weight: 600; text-decoration: none; 
+    transition: color 0.3s ease; position: relative; padding-bottom: 2px;
+}
+.back-to-dashboard::after {
+    content: ''; position: absolute; width: 0%; height: 2px; bottom: 0; left: 50%;
+    background-color: #3A32A5; transition: all 0.3s ease; transform: translateX(-50%);
+}
+.back-to-dashboard:hover { color: #3A32A5; }
+.back-to-dashboard:hover::after { width: 100%; }
+
+.alert-error {
+    background-color: #ffebee; color: #c62828; padding: 12px; border-radius: 8px; 
+    margin-bottom: 20px; border: 1px solid #ef9a9a; font-size: 13px; text-align: center;
+}
+
+.login-footer { margin-top: auto; padding-top: 40px; text-align: center; }
+.login-footer p { font-size: 12px; color: #94a3b8; margin: 0; line-height: 1.6; }
+
+
+/* ========================================= */
+/* DESKTOP LAYOUT & ANIMASI PANEL KIRI       */
+/* ========================================= */
+@media (min-width: 768px) {
+  body.login { background: #f8fafc; display: block; }
+  .login-wrap { flex-direction: row; min-height: 100vh; padding: 0; }
+  
+  .mobile-logo, .login-footer { display: none; }
+  
+  .desktop-title { 
+      display: block; text-align: center; font-size: 32px; font-weight: 800; 
+      color: #1e293b; margin: 0 0 8px 0; letter-spacing: 1px;
+  }
+  .desktop-sub { 
+      display: block; text-align: center; font-size: 15px; 
+      color: #64748b; margin: 0 0 32px 0; 
+  }
+
+  /* --- ANIMASI PANEL KIRI (UNGU) --- */
+  .login-brand { 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      width: 50%; 
+      /* Gradient dibuat lebih besar agar bisa dianimasikan */
+      background: linear-gradient(135deg, #3A32A5 0%, #2b257c 50%, #1a1554 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 12s ease infinite; /* Animasi background bergerak */
+      
+      color: #fff; 
+      padding: 60px; 
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  /* Animasi Lingkaran Abstrak 1 */
+  .login-brand::before {
+      content: '';
+      position: absolute;
+      top: -50px; left: -50px;
+      width: 250px; height: 250px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      animation: floatShape 6s infinite alternate ease-in-out;
+  }
+  /* Animasi Lingkaran Abstrak 2 */
+  .login-brand::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -50px;
+      width: 350px; height: 350px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      animation: floatShape 8s infinite alternate-reverse ease-in-out;
+  }
+
+  /* Teks & Logo di Panel Kiri */
+  .brand-content {
+      position: relative;
+      z-index: 2;
+      /* Animasi meluncur masuk saat halaman dibuka */
+      opacity: 0;
+      animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .brand-logo {
+      width: 280px; height: auto; margin-bottom: 20px;
+      transition: transform 0.4s ease;
+  }
+  .login-brand:hover .brand-logo { transform: scale(1.03) translateX(5px); }
+
+  .login-brand .tag { 
+      font-size: 20px; font-weight: 700; margin: 0; position: relative; z-index: 2;
+      opacity: 0;
+      /* Delay animasi agar muncul setelah logo */
+      animation: slideInLeft 0.8s ease-out 0.3s forwards;
+  }
+
+  .login-brand .about { 
+      font-size: 15px; line-height: 1.8; color: rgba(255, 255, 255, 0.85); 
+      max-width: 450px; margin: 0; position: relative; z-index: 2;
+      border-left: 3px solid rgba(255, 255, 255, 0.3);
+      padding-left: 15px;
+      transition: border-color 0.3s ease;
+      /* Delay animasi lebih lama */
+      opacity: 0;
+      animation: slideInLeft 0.8s ease-out 0.6s forwards;
+  }
+  .login-brand .about:hover { border-left-color: #fff; }
+  
+  /* Panel Kanan (Form) */
+  .login-form { 
+      width: 50%; max-width: none; margin: 0; background: #ffffff; 
+      display: flex; flex-direction: column; justify-content: center; align-items: center; 
+      padding: 0 40px; box-sizing: border-box;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.03); 
+      border-radius: 0; min-height: 100vh; 
+  }
+  .login-form-in { width: 100%; max-width: 400px; }
+}
