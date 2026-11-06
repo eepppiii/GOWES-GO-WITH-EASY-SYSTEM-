@@ -45,6 +45,7 @@ create table sepeda (
 	id_admin int not null,
 	kode_qr varchar(100) not null,
 	status_ketersediaan varchar(20) not null default 'Tersedia',
+	catatan_perawatan varchar(255),
 	
 	foreign key(id_shelter) references shelter (id_shelter),
 	foreign key(id_admin) references admin(id_admin)
@@ -101,3 +102,41 @@ create table sanksi (
 	foreign key(id_peminjam) references peminjam(id_peminjam),
 	foreign key(id_admin) references admin(id_admin)
 );
+
+--trigger untuk pilih durasi (jalanin di database)
+CREATE OR REPLACE FUNCTION hitung_batas_kembali()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.batas_kembali := NEW.waktu_mulai + (NEW.durasi_pinjam * INTERVAL '1 hour');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_batas_kembali
+BEFORE INSERT ON peminjaman
+FOR EACH ROW
+EXECUTE FUNCTION hitung_batas_kembali();
+
+INSERT INTO peminjaman (id_sepeda, id_peminjam, waktu_mulai, durasi_pinjam)
+VALUES ($1, $2, $3, $4)
+RETURNING id_peminjaman, batas_kembali;
+
+-- trigger status keterlambatan (run abis tabel peminjaman)
+CREATE OR REPLACE FUNCTION update_status_keterlambatan()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.waktu_kembali IS NOT NULL THEN
+        IF NEW.waktu_kembali > NEW.batas_kembali THEN
+            NEW.status_keterlambatan := 'Terlambat';
+        ELSE
+            NEW.status_keterlambatan := 'Tepat Waktu';
+        END IF;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_status_keterlambatan
+BEFORE UPDATE ON peminjaman
+FOR EACH ROW
+EXECUTE FUNCTION update_status_keterlambatan();
